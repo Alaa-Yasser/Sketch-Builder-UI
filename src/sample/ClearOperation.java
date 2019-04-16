@@ -14,6 +14,8 @@ public class ClearOperation extends Operation {
 
     @Override
     public void operate() {
+
         graphics.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        
     }
 }
