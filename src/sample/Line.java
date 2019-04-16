@@ -3,12 +3,13 @@ package sample;
 import javafx.scene.canvas.*;
 import javafx.scene.layout.StackPane;
 
-public class Line extends Tool{
+public class Line extends Shape{
     private GraphicsContext graphics;
     private double endX;
     private double endY;
     private StackPane stackPane;
 
+    @Override
     public  void setLayout (StackPane stackPane){
         this.stackPane = stackPane;
     }
@@ -50,4 +51,5 @@ public class Line extends Tool{
         graphics.setLineWidth(super.LINE_WIDTH);
         graphics.strokeLine(super.initX, super.initY, this.endX, this.endY);
     }
+
 }
