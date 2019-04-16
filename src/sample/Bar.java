@@ -1,14 +1,10 @@
 package sample;
 
 import javafx.scene.ImageCursor;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
-import javafx.scene.paint.Color;
-import javafx.stage.*;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
 
 public class Bar extends MenuBar {
 
@@ -29,18 +25,11 @@ public class Bar extends MenuBar {
     private Image cursorImage;
     private ImageCursor imageCursor;
 
-    private int operation = DrawArea.BRUSH;
-
     //INTERFACE  TO CONTROL ACTIONS
     public interface BarListener {
-        void colorChanged(Color color);
         void toolChanged(Tool tool);
         void doOperation (Operation operation);
         void changeCursor(ImageCursor imageCursor) throws FileNotFoundException;
-        void open() throws Exception;
-        void saveImage() throws Exception;
-        void clear();
-        void close();
     }
 
     //CONSTRACTOUR
@@ -98,7 +87,7 @@ public class Bar extends MenuBar {
             ImageView clearImg = new ImageView(new Image(ImgSteram, 30,30, false, true));
             iClear.setGraphic(clearImg);
 
-            iClear.setOnAction(e -> listener.clear());
+            iClear.setOnAction(e -> listener.doOperation(new ClearOperation()));
 
             //CLOSE
             iClose = new MenuItem("Close");
@@ -107,7 +96,7 @@ public class Bar extends MenuBar {
             ImageView closeImg = new ImageView(new Image(ImgSteram, 30,30, false, true));
             iClose.setGraphic(closeImg);
 
-            iClose.setOnAction(e -> listener.close());
+            iClose.setOnAction(e -> listener.doOperation(new CloseOperation()));
 
             //ADD ITEMS TO FILE MENU
             file.getItems().addAll(iOpen, iSave, iSubmit, iClear, iClose);
@@ -172,7 +161,7 @@ public class Bar extends MenuBar {
             });
 
             //ADD ITEMS TO TOOLS MENU
-            tools.getItems().addAll(iBrush, iColor, iEraser, iLine);
+            tools.getItems().addAll(iBrush, iEraser, iLine);
 
             //ADD MENUS TO MENU BAR
             this.getMenus().addAll(file, tools);
@@ -182,8 +171,5 @@ public class Bar extends MenuBar {
         }
 
     }
-
-    public Color getSelectedColor (){ return selectedColor; }
-    public int getOperation () { return operation; }
 
 }
