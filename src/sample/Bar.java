@@ -15,16 +15,14 @@ public class Bar extends MenuBar {
     private Menu file;
     private MenuItem iOpen;
     private MenuItem iSave;
+    private MenuItem iSubmit;
     private MenuItem iClear;
     private MenuItem iClose;
 
     private Menu tools;
     private MenuItem iBrush;
-    private MenuItem iColor;
     private MenuItem iEraser;
-
-    private ColorPicker color;
-    private Color selectedColor = Color.BLACK;
+    private MenuItem iLine;
 
     private FileInputStream ImgSteram;
     private FileInputStream cursorImgStream = null;
@@ -36,7 +34,8 @@ public class Bar extends MenuBar {
     //INTERFACE  TO CONTROL ACTIONS
     public interface BarListener {
         void colorChanged(Color color);
-        void operationChanged(int operation);
+        void toolChanged(Tool tool);
+        void doOperation (Operation operation);
         void changeCursor(ImageCursor imageCursor) throws FileNotFoundException;
         void open() throws Exception;
         void saveImage() throws Exception;
@@ -66,7 +65,7 @@ public class Bar extends MenuBar {
 
             iOpen.setOnAction(e -> {
                 try {
-                    listener.open();
+                    listener.doOperation(new OpenOperation());
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -81,11 +80,16 @@ public class Bar extends MenuBar {
 
             iSave.setOnAction(e -> {
                 try {
-                    listener.saveImage();
+                    listener.doOperation(new SaveOperation());
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
             });
+
+            //SUBMIT
+            iSubmit = new MenuItem("Submit");
+
+            iSubmit.setOnAction(e -> listener.doOperation(new SubmitOperation()));
 
             //CLEAR
             iClear = new MenuItem("Clear");
@@ -106,7 +110,7 @@ public class Bar extends MenuBar {
             iClose.setOnAction(e -> listener.close());
 
             //ADD ITEMS TO FILE MENU
-            file.getItems().addAll(iOpen, iSave, iClear, iClose);
+            file.getItems().addAll(iOpen, iSave, iSubmit, iClear, iClose);
 
             //***************************************************
 
@@ -127,8 +131,8 @@ public class Bar extends MenuBar {
             iBrush.setGraphic(brushImg);
 
             iBrush.setOnAction(e ->{
-                operation = DrawArea.BRUSH;
-                listener.operationChanged(operation);
+//                operation = DrawArea.BRUSH;
+                listener.toolChanged(new Brush());
 
                 try {
                     cursorImgStream = new FileInputStream("icons/icons8-paint-filled-100.png");
@@ -140,30 +144,6 @@ public class Bar extends MenuBar {
                 }
             });
 
-            //COLOR
-            iColor = new MenuItem("Color");
-
-            ImgSteram = new FileInputStream("icons/icons8-color-palette-64.png");
-            ImageView colorImg = new ImageView(new Image(ImgSteram, 30,30, false, true));
-            iColor.setGraphic(colorImg);
-
-            iColor.setOnAction(e -> {
-                Stage colorWindow = new Stage();
-                colorWindow.setTitle("Change Color");
-                colorWindow.initModality(Modality.APPLICATION_MODAL);
-                colorWindow.setResizable(false);
-
-                color = new ColorPicker();
-                color.setValue(selectedColor);
-                color.setOnAction(e1 -> {
-                    selectedColor = color.getValue();
-                    listener.colorChanged(selectedColor);
-                });
-
-                colorWindow.setScene(new Scene (color,250,50));
-                colorWindow.show();
-            });
-
             //ERASER
             iEraser = new MenuItem("Eraser");
 
@@ -172,8 +152,8 @@ public class Bar extends MenuBar {
             iEraser.setGraphic(eraseImg);
 
             iEraser.setOnAction(e -> {
-                operation = DrawArea.ERASER;
-                listener.operationChanged(operation);
+//                operation = DrawArea.ERASER;
+                listener.toolChanged(new Erase());
 
                 try {
                     cursorImgStream = new FileInputStream("icons/icons8-eraser-filled-100.png");
@@ -185,8 +165,14 @@ public class Bar extends MenuBar {
                 }
             });
 
+            iLine = new MenuItem("Line");
+            iLine.setOnAction(e -> {
+//                operation = DrawArea.LINE;
+                listener.toolChanged(new Line());
+            });
+
             //ADD ITEMS TO TOOLS MENU
-            tools.getItems().addAll(iBrush, iColor, iEraser);
+            tools.getItems().addAll(iBrush, iColor, iEraser, iLine);
 
             //ADD MENUS TO MENU BAR
             this.getMenus().addAll(file, tools);
