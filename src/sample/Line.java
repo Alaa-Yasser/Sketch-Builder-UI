@@ -14,7 +14,7 @@ public class Line extends Tool{
     }
 
     @Override
-    public void setCanvas(Canvas canvas) {
+    public void setCanvas(DrawCanvas canvas) {
         this.canvas = canvas;
         graphics = this.canvas.getGraphicsContext2D();
 
@@ -40,6 +40,7 @@ public class Line extends Tool{
             this.endX = e.getX();
             this.endY = e.getY();
             draw();
+            canvas.setIsEdited(true);
         });
 
     }

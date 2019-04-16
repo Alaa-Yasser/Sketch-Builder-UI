@@ -38,5 +38,4 @@ public class DrawLine {
         stackPane.getChildren().addAll(new Canvas(), canvas);
 
     }
-
 }

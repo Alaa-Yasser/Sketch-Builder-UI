@@ -4,9 +4,7 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.ImageCursor;
 import javafx.scene.canvas.*;
 import javafx.scene.image.*;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import java.io.*;
 
@@ -18,6 +16,7 @@ public class DrawArea  extends Canvas {
 
     final static int BRUSH = 0;
     final static int ERASER = 1;
+    final static int LINE = 2;
 
     public boolean isSaved = true;
 

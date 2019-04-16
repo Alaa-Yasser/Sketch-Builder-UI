@@ -7,7 +7,7 @@ public class Brush extends Tool {
     private GraphicsContext graphics;
 
     @Override
-    public void setCanvas(Canvas canvas) {
+    public void setCanvas(DrawCanvas canvas) {
         this.canvas = canvas;
         graphics = this.canvas.getGraphicsContext2D();
 
@@ -25,6 +25,7 @@ public class Brush extends Tool {
             draw();
             graphics.stroke();
         });
+        canvas.setOnMouseReleased(e -> canvas.setIsEdited(true));
     }
 
     @Override
