@@ -2,18 +2,13 @@ package sample;
 
 import javafx.geometry.Rectangle2D;
 import javafx.scene.*;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.*;
-import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import javafx.stage.*;
-import java.io.*;
 public class MainFrame extends Stage implements Bar.BarListener {
 
     private Bar bar;
     private DrawCanvas drawArea;
     private StackPane stackpane;
-//    private Rectangle rectangle;
     private BorderPane layout;
     private Scene scene;
     private Rectangle2D primaryScreenBounds;
@@ -26,13 +21,12 @@ public class MainFrame extends Stage implements Bar.BarListener {
         bar = new Bar(this);
 
         drawArea = new DrawCanvas();
-//        drawArea.setMainColor(bar.getSelectedColor());
 
 
         drawArea.widthProperty().bind(stackpane.widthProperty());
         drawArea.heightProperty().bind(stackpane.heightProperty());
 
-        stackpane.getChildren().addAll(new Canvas(), drawArea); //rectangle
+        stackpane.getChildren().addAll(new DrawCanvas(), drawArea);
 
         layout.setTop(bar);
         layout.setCenter(stackpane);
@@ -49,40 +43,11 @@ public class MainFrame extends Stage implements Bar.BarListener {
 
         this.setOnCloseRequest(e -> {
             e.consume();
-            closeEvent();
+            CloseOperation close = new CloseOperation();
+            close.setCanvas(drawArea);
+            close.operate();
         });
-        //drawArea.drawFrame(200,200);
     }
-
-    private void closeEvent (){
-            if (true){
-//                this.getScene().getWindow().close();
-                System.exit(0);
-            }
-            else
-            {
-//                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-//                alert.setContentText("The current image is not saved. SaveOperation it?");
-//                alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
-//                Optional<ButtonType> result = alert.showAndWait();
-//                if (result.get() == ButtonType.YES){
-//                    try {
-//                        saveImage();
-//                    } catch (Exception e1) {
-//                        e1.printStackTrace();
-//                    }
-//                }
-//                else if (result.get() == ButtonType.NO){
-//                    this.getScene().getWindow().hide();
-//                }
-//                else if (result.get() == ButtonType.CANCEL){
-//                    alert.hide();
-//                }
-            }
-    }
-
-    @Override
-    public void colorChanged(Color color) {  }
 
     @Override
     public void toolChanged(Tool tool) {
@@ -101,26 +66,5 @@ public class MainFrame extends Stage implements Bar.BarListener {
 
     @Override
     public void changeCursor(ImageCursor imageCursor){  }
-//
-    @Override
-    public void open(){
-        final FileChooser f = new FileChooser();
-            File file = f.showOpenDialog(this);
-            if (file != null) { // only proceed, if file was chosen
-              //  MainFrame openFrame = new MainFrame();
-                Image img = new Image(file.toURI().toString());
-                drawArea.getGraphicsContext2D().drawImage(img, 0, 0);
-               // openFrame.drawArea.getGraphicsContext2D().drawImage(img, 0, 0);
-            }
-    }
-//
-    @Override
-    public void saveImage() { }
-//
-    @Override
-    public void clear() {}
-
-    @Override
-    public void close() {}
 
 }

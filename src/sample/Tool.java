@@ -1,7 +1,5 @@
 package sample;
 
-import javafx.scene.canvas.Canvas;
-
 public abstract class Tool {
     protected double initX, initY;
     protected DrawCanvas canvas;

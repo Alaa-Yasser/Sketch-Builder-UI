@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
 public class Erase extends Tool{

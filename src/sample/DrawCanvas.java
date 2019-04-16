@@ -1,7 +1,6 @@
 package sample;
 
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 
 public class DrawCanvas extends Canvas {
     private boolean isEdited;

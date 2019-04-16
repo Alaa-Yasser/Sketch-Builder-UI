@@ -30,7 +30,7 @@ public class OpenOperation extends Operation {
         }
         else{
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setContentText("The current image is not saved. SaveOperation it?");
+                alert.setContentText("The current image is not saved. Save it?");
                 alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.YES){
@@ -45,6 +45,9 @@ public class OpenOperation extends Operation {
                 }
                 else if (result.get() == ButtonType.NO){
                     open();
+                }
+                else if (result.get() == ButtonType.CANCEL){
+                    alert.hide();
                 }
         }
     }

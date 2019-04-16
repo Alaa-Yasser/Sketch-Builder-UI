@@ -25,7 +25,7 @@ public class Line extends Tool{
 
         canvas.setOnMouseDragged(e -> {
             stackPane.getChildren().remove(0);
-            final Canvas tempCanvas = new Canvas();
+            final DrawCanvas tempCanvas = new DrawCanvas();
             tempCanvas.widthProperty().bind(stackPane.widthProperty());
             tempCanvas.heightProperty().bind(stackPane.heightProperty());
             final GraphicsContext gc = tempCanvas.getGraphicsContext2D();
