@@ -4,7 +4,7 @@ import java.net.*;
 import java.io.*;
 
 
-public class Client extends Thread
+public class Client
 {
     // initialize socket and input output streams
     private Socket socket            = null;
@@ -12,6 +12,13 @@ public class Client extends Thread
     private DataOutputStream out     = null;
     private String address;
     private int port;
+    private String message, response;
+
+    public interface ServerResponse{
+        void response(String message);
+    }
+
+    private ServerResponse serverResponse;
 
     // constructor to put ip address and port
     public Client(String address, int port)
@@ -22,14 +29,19 @@ public class Client extends Thread
 
     }
 
+    public  void setServerResponse(ServerResponse serverResponse){
+        this.serverResponse = serverResponse;
+    }
+
+
     public void connect(){
         try
         {
             socket = new Socket(address, port);
             System.out.println("Connected");
 
-            // takes input from terminal
-            input  = new DataInputStream(System.in);
+            // takes input from socket
+            input  = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
 
             // sends output to the socket
             out    = new DataOutputStream(socket.getOutputStream());
@@ -41,18 +53,19 @@ public class Client extends Thread
     }
 
 
-    public String sendMessage(String message){
-        String response = "";
+    public void sendMessage(String message){
+
         try
         {
             out.writeUTF(message);
-            response = input.readUTF();
+            System.out.println("message is sent");
+            this.response = input.readUTF();
+            System.out.println("response = "+this.response);
         }
         catch(IOException io)
         {
             io.printStackTrace();
         }
-        return response;
     }
 
 
