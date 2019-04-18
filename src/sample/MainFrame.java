@@ -54,8 +54,8 @@ public class MainFrame extends Stage implements Bar.BarListener {
 
     @Override
     public void toolChanged(Tool tool) {
-        if(tool instanceof Line)
-            ((Line)tool).setLayout(stackpane);
+        if(tool instanceof Shape)
+            ((Shape)tool).setLayout(stackpane);
         tool.setCanvas(drawArea);
     }
 
