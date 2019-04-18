@@ -1,5 +1,11 @@
 package sample;
 
+import Operations.ClearOperation;
+import Operations.CloseOperation;
+import Operations.OpenOperation;
+import Operations.Operation;
+import Tools.Shape;
+import Tools.Tool;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.*;
 import javafx.scene.layout.*;
