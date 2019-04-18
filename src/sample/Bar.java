@@ -23,7 +23,7 @@ public class Bar extends MenuBar {
     private MenuItem iLine;
     private MenuItem iRect;
 
-    private FileInputStream ImgSteram;
+    private FileInputStream imgSteram;
     private FileInputStream cursorImgStream = null;
     private Image cursorImage;
     private ImageCursor imageCursor;
@@ -47,8 +47,8 @@ public class Bar extends MenuBar {
             //FILE MENU
             file = new Menu("File");
 
-            ImgSteram = new FileInputStream("icons/icons8-file-64.png");
-            ImageView fileImg = new ImageView(new Image(ImgSteram, 30,30, false, true));
+            imgSteram = new FileInputStream("icons/icons8-file-64.png");
+            ImageView fileImg = new ImageView(new Image(imgSteram, 30,30, false, true));
             file.setGraphic(fileImg);
 
             //FILE'S MENU ITEMS AND THEIR ACTIONS
@@ -56,8 +56,8 @@ public class Bar extends MenuBar {
             //OPEN
             iOpen = new MenuItem("Open");
 
-            ImgSteram = new FileInputStream("icons/icons8-opened-folder-64.png");
-            ImageView openImg = new ImageView(new Image(ImgSteram, 30,30, false, true));
+            imgSteram = new FileInputStream("icons/icons8-opened-folder-64.png");
+            ImageView openImg = new ImageView(new Image(imgSteram, 30,30, false, true));
             iOpen.setGraphic(openImg);
 
             iOpen.setOnAction(e -> {
@@ -71,8 +71,8 @@ public class Bar extends MenuBar {
             //SAVE
             iSave = new MenuItem("Save");
 
-            ImgSteram = new FileInputStream("icons/icons8-save-64.png");
-            ImageView saveImg = new ImageView(new Image(ImgSteram, 30,30, false, true));
+            imgSteram = new FileInputStream("icons/icons8-save-64.png");
+            ImageView saveImg = new ImageView(new Image(imgSteram, 30,30, false, true));
             iSave.setGraphic(saveImg);
 
             iSave.setOnAction(e -> {
@@ -91,8 +91,8 @@ public class Bar extends MenuBar {
             //CLEAR
             iClear = new MenuItem("Clear");
 
-            ImgSteram = new FileInputStream("icons/icons8-broom-64.png");
-            ImageView clearImg = new ImageView(new Image(ImgSteram, 30,30, false, true));
+            imgSteram = new FileInputStream("icons/icons8-broom-64.png");
+            ImageView clearImg = new ImageView(new Image(imgSteram, 30,30, false, true));
             iClear.setGraphic(clearImg);
 
             iClear.setOnAction(e -> listener.doOperation(new ClearOperation()));
@@ -100,8 +100,8 @@ public class Bar extends MenuBar {
             //CLOSE
             iClose = new MenuItem("Close");
 
-            ImgSteram = new FileInputStream("icons/icons8-delete-64.png");
-            ImageView closeImg = new ImageView(new Image(ImgSteram, 30,30, false, true));
+            imgSteram = new FileInputStream("icons/icons8-delete-64.png");
+            ImageView closeImg = new ImageView(new Image(imgSteram, 30,30, false, true));
             iClose.setGraphic(closeImg);
 
             iClose.setOnAction(e -> listener.doOperation(new CloseOperation()));
@@ -123,8 +123,8 @@ public class Bar extends MenuBar {
             //BRUSH
             iBrush = new MenuItem("Brush");
 
-            ImgSteram = new FileInputStream("icons/icons8-paint-64.png");
-            ImageView brushImg = new ImageView(new Image(ImgSteram, 30,30, false, true));
+            imgSteram = new FileInputStream("icons/icons8-paint-64.png");
+            ImageView brushImg = new ImageView(new Image(imgSteram, 30,30, false, true));
             iBrush.setGraphic(brushImg);
 
             iBrush.setOnAction(e -> clickBrush());
@@ -132,8 +132,8 @@ public class Bar extends MenuBar {
             //ERASER
             iEraser = new MenuItem("Eraser");
 
-            ImgSteram = new FileInputStream("icons/icons8-erase-64.png");
-            ImageView eraseImg = new ImageView(new Image(ImgSteram, 30,30, false, true));
+            imgSteram = new FileInputStream("icons/icons8-erase-64.png");
+            ImageView eraseImg = new ImageView(new Image(imgSteram, 30,30, false, true));
             iEraser.setGraphic(eraseImg);
 
             iEraser.setOnAction(e -> {
@@ -152,13 +152,19 @@ public class Bar extends MenuBar {
             //LINE
             iLine = new MenuItem("Line");
 
-            ImgSteram = new FileInputStream("icons/icons8-line-40.png");
-            ImageView lineImg = new ImageView(new Image(ImgSteram, 30,30, false, true));
+            imgSteram = new FileInputStream("icons/icons8-line-40.png");
+            ImageView lineImg = new ImageView(new Image(imgSteram, 30,30, false, true));
             iLine.setGraphic(lineImg);
 
             iLine.setOnAction(e -> listener.toolChanged(new Line()));
 
+            //RECTANGLE
             iRect = new MenuItem("Rectangle");
+
+            imgSteram = new FileInputStream("icons/icons8-rectangular-64.png");
+            ImageView rectImg = new ImageView(new Image(imgSteram, 30, 30, false,true));
+            iRect.setGraphic(rectImg);
+
             iRect.setOnAction(e -> listener.toolChanged(new RectangleShape()) );
 
             //ADD ITEMS TO TOOLS MENU
