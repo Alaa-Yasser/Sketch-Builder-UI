@@ -1,9 +1,10 @@
-package sample;
+package Operations;
 
 import javafx.scene.canvas.*;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.*;
+import sample.DrawCanvas;
 
 import java.io.File;
 import java.util.Optional;
