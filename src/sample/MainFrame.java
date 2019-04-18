@@ -4,6 +4,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.*;
 import javafx.scene.layout.*;
 import javafx.stage.*;
+
 public class MainFrame extends Stage implements Bar.BarListener {
 
     private Bar bar;
@@ -13,12 +14,12 @@ public class MainFrame extends Stage implements Bar.BarListener {
     private Scene scene;
     private Rectangle2D primaryScreenBounds;
 
-    public MainFrame () throws Exception{
+    public MainFrame (Client client) throws Exception{
 
         layout = new BorderPane();
         stackpane = new StackPane();
 
-        bar = new Bar(this);
+        bar = new Bar(this, client);
 
         drawArea = new DrawCanvas();
 
@@ -69,6 +70,6 @@ public class MainFrame extends Stage implements Bar.BarListener {
     }
 
     @Override
-    public void changeCursor(ImageCursor imageCursor){  }
+    public void changeCursor(ImageCursor imageCursor)  { drawArea.setCursor(imageCursor); }
 
 }
