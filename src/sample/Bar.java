@@ -25,6 +25,8 @@ public class Bar extends MenuBar {
     private Image cursorImage;
     private ImageCursor imageCursor;
 
+    private BarListener listener;
+
     //INTERFACE  TO CONTROL ACTIONS
     public interface BarListener {
         void toolChanged(Tool tool);
@@ -34,6 +36,8 @@ public class Bar extends MenuBar {
 
     //CONSTRACTOUR
     public Bar(final BarListener listener){
+
+        this.listener = listener;
 
         try{
             //FILE MENU
@@ -119,20 +123,6 @@ public class Bar extends MenuBar {
             ImageView brushImg = new ImageView(new Image(ImgSteram, 30,30, false, true));
             iBrush.setGraphic(brushImg);
 
-            iBrush.setOnAction(e ->{
-//                operation = DrawArea.BRUSH;
-                listener.toolChanged(new Brush());
-
-                try {
-                    cursorImgStream = new FileInputStream("icons/icons8-paint-filled-100.png");
-                    cursorImage = new Image (cursorImgStream);
-                    imageCursor = new ImageCursor(cursorImage);
-                    listener.changeCursor(imageCursor);
-                } catch (FileNotFoundException e1) {
-                    e1.printStackTrace();
-                }
-            });
-
             //ERASER
             iEraser = new MenuItem("Eraser");
 
@@ -170,6 +160,19 @@ public class Bar extends MenuBar {
             ex.printStackTrace();
         }
 
+    }
+
+    public void clickBrush (){
+        listener.toolChanged(new Brush());
+
+        try {
+            cursorImgStream = new FileInputStream("icons/icons8-paint-filled-100.png");
+            cursorImage = new Image (cursorImgStream);
+            imageCursor = new ImageCursor(cursorImage);
+            listener.changeCursor(imageCursor);
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+        }
     }
 
 }
