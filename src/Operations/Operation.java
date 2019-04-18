@@ -1,4 +1,6 @@
-package sample;
+package Operations;
+
+import sample.DrawCanvas;
 
 public abstract class Operation {
 
