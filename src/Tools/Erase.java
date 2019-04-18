@@ -1,8 +1,10 @@
-package sample;
+package Tools;
 
+import Tools.Tool;
 import javafx.scene.canvas.GraphicsContext;
+import sample.DrawCanvas;
 
-public class Erase extends Tool{
+public class Erase extends Tool {
 
     private GraphicsContext graphics;
 
