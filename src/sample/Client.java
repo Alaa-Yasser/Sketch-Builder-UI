@@ -61,6 +61,7 @@ public class Client
             System.out.println("message is sent");
             this.response = input.readUTF();
             System.out.println("response = "+this.response);
+            serverResponse.response(this.response);
         }
         catch(IOException io)
         {
