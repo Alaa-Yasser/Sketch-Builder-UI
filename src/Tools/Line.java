@@ -1,10 +1,12 @@
-package sample;
+package Tools;
 
+import Tools.Shape;
 import javafx.scene.Cursor;
 import javafx.scene.canvas.*;
 import javafx.scene.layout.StackPane;
+import sample.DrawCanvas;
 
-public class Line extends Shape{
+public class Line extends Shape {
     private GraphicsContext graphics;
     private double endX;
     private double endY;
