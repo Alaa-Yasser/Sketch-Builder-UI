@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.scene.Cursor;
 import javafx.scene.canvas.*;
 import javafx.scene.layout.StackPane;
 
@@ -18,6 +19,8 @@ public class Line extends Shape{
     public void setCanvas(DrawCanvas canvas) {
         this.canvas = canvas;
         graphics = this.canvas.getGraphicsContext2D();
+
+        canvas.setCursor(Cursor.CROSSHAIR);
 
         canvas.setOnMousePressed(e -> {
             super.initX = e.getX();
