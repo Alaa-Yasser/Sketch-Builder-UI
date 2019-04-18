@@ -1,8 +1,10 @@
-package sample;
+package Operations;
 
+import Operations.Operation;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.canvas.*;
 import javafx.scene.image.WritableImage;
+import sample.DrawCanvas;
 
 import javax.imageio.ImageIO;
 import java.io.File;
