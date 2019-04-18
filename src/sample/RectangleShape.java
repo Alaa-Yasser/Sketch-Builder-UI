@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.scene.Cursor;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.*;
@@ -25,6 +26,8 @@ public class RectangleShape extends Shape {
     public void setCanvas(DrawCanvas canvas) {
         this.canvas = canvas;
         graphics = this.canvas.getGraphicsContext2D();
+
+        canvas.setCursor(Cursor.CROSSHAIR);
 
         canvas.setOnMousePressed(e -> {
             rect.setX(e.getX());
