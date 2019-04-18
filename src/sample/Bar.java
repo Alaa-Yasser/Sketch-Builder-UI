@@ -149,7 +149,13 @@ public class Bar extends MenuBar {
                 }
             });
 
+            //LINE
             iLine = new MenuItem("Line");
+
+            ImgSteram = new FileInputStream("icons/icons8-line-40.png");
+            ImageView lineImg = new ImageView(new Image(ImgSteram, 30,30, false, true));
+            iLine.setGraphic(lineImg);
+
             iLine.setOnAction(e -> listener.toolChanged(new Line()));
 
             iRect = new MenuItem("Rectangle");
