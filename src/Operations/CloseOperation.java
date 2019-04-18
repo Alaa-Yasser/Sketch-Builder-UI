@@ -1,8 +1,9 @@
-package sample;
+package Operations;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import sample.DrawCanvas;
 
 import java.util.Optional;
 
