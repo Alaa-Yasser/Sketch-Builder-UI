@@ -86,6 +86,10 @@ public class Bar extends MenuBar {
             //SUBMIT
             iSubmit = new MenuItem("Submit");
 
+            imgSteram = new FileInputStream("icons/icons8-checkmark-64.png");
+            ImageView submitImg = new ImageView(new Image(imgSteram, 30, 30, false, true));
+            iSubmit.setGraphic(submitImg);
+
             iSubmit.setOnAction(e -> listener.doOperation(new SubmitOperation(client)));
 
             //CLEAR
