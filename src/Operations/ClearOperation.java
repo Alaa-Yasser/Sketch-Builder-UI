@@ -1,7 +1,9 @@
-package sample;
+package Operations;
 
+import Operations.Operation;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.StackPane;
+import sample.DrawCanvas;
 
 public class ClearOperation extends Operation {
 
