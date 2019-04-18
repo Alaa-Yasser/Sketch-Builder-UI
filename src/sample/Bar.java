@@ -19,6 +19,7 @@ public class Bar extends MenuBar {
     private MenuItem iBrush;
     private MenuItem iEraser;
     private MenuItem iLine;
+    private MenuItem iRect;
 
     private FileInputStream ImgSteram;
     private FileInputStream cursorImgStream = null;
@@ -147,12 +148,13 @@ public class Bar extends MenuBar {
             });
 
             iLine = new MenuItem("Line");
-            iLine.setOnAction(e -> {
-                listener.toolChanged(new Line());
-            });
+            iLine.setOnAction(e -> listener.toolChanged(new Line()));
+
+            iRect = new MenuItem("Rectangle");
+            iRect.setOnAction(e -> listener.toolChanged(new RectangleShape()) );
 
             //ADD ITEMS TO TOOLS MENU
-            tools.getItems().addAll(iBrush, iEraser, iLine);
+            tools.getItems().addAll(iBrush,iLine, iRect ,iEraser);
 
             //ADD MENUS TO MENU BAR
             this.getMenus().addAll(file, tools);
