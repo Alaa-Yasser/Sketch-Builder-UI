@@ -47,6 +47,8 @@ public class MainFrame extends Stage implements Bar.BarListener {
             close.setCanvas(drawArea);
             close.operate();
         });
+
+        bar.clickBrush();
     }
 
     @Override
@@ -60,6 +62,8 @@ public class MainFrame extends Stage implements Bar.BarListener {
     public void doOperation (Operation operation){
         if (operation instanceof OpenOperation)
             ((OpenOperation)operation).setStage(this);
+        else  if (operation instanceof ClearOperation)
+            ((ClearOperation)operation).setLayout(stackpane);
         operation.setCanvas(drawArea);
         operation.operate();
     }
