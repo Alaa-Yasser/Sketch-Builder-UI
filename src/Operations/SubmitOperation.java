@@ -1,4 +1,7 @@
-package sample;
+package Operations;
+
+import sample.Client;
+import sample.DrawCanvas;
 
 public class SubmitOperation extends Operation implements Client.ServerResponse {
 
