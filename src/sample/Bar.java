@@ -26,6 +26,7 @@ public class Bar extends MenuBar {
     private ImageCursor imageCursor;
 
     private BarListener listener;
+    private Client client;
 
     //INTERFACE  TO CONTROL ACTIONS
     public interface BarListener {
@@ -35,8 +36,8 @@ public class Bar extends MenuBar {
     }
 
     //CONSTRACTOUR
-    public Bar(final BarListener listener){
-
+    public Bar(final BarListener listener, Client client){
+        this.client = client;
         this.listener = listener;
 
         try{
@@ -82,7 +83,7 @@ public class Bar extends MenuBar {
             //SUBMIT
             iSubmit = new MenuItem("Submit");
 
-            iSubmit.setOnAction(e -> listener.doOperation(new SubmitOperation()));
+            iSubmit.setOnAction(e -> listener.doOperation(new SubmitOperation(client)));
 
             //CLEAR
             iClear = new MenuItem("Clear");
@@ -123,6 +124,8 @@ public class Bar extends MenuBar {
             ImageView brushImg = new ImageView(new Image(ImgSteram, 30,30, false, true));
             iBrush.setGraphic(brushImg);
 
+            iBrush.setOnAction(e -> clickBrush());
+
             //ERASER
             iEraser = new MenuItem("Eraser");
 
@@ -131,7 +134,6 @@ public class Bar extends MenuBar {
             iEraser.setGraphic(eraseImg);
 
             iEraser.setOnAction(e -> {
-//                operation = DrawArea.ERASER;
                 listener.toolChanged(new Erase());
 
                 try {
@@ -146,7 +148,6 @@ public class Bar extends MenuBar {
 
             iLine = new MenuItem("Line");
             iLine.setOnAction(e -> {
-//                operation = DrawArea.LINE;
                 listener.toolChanged(new Line());
             });
 
