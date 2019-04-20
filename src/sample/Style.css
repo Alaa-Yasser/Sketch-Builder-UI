@@ -1,0 +1,29 @@
+.button
+{
+    -fx-color: DarkBlue;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-border: none;
+}
+
+.button:hover
+{
+    -fx-color: Silver;
+}
+
+.menu, .menu-item, .context-menu {
+    -fx-background-color: Silver;
+}
+
+/*
+.TitleBar
+{
+    -fx-background-color: darkblue;
+}
+*/
+/*
+.text
+{
+    -fx-font-size: 20px;
+    -fx-color: White;
+}*/
