@@ -44,6 +44,7 @@ public class MainFrame extends Stage implements Bar.BarListener {
         layout.setCenter(stackpane);
 
         scene = new Scene(layout, 500, 200);
+        scene.getStylesheets().add(getClass().getResource("Style.css").toExternalForm());
 
         primaryScreenBounds = Screen.getPrimary().getVisualBounds();
         final double STAGEHEIGHT = primaryScreenBounds.getHeight() - 20;
