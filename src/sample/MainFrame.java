@@ -13,35 +13,39 @@ import javafx.stage.*;
 
 public class MainFrame extends Stage implements Bar.BarListener {
 
-    private Bar bar;
+    private Bar menuBar;
     private DrawCanvas drawArea;
+    private TitleBar titleBar;
     private StackPane stackpane;
     private BorderPane layout;
+    private VBox bars;
     private Scene scene;
     private Rectangle2D primaryScreenBounds;
 
     public MainFrame (Client client) throws Exception{
 
         layout = new BorderPane();
+        bars = new VBox();
         stackpane = new StackPane();
 
-        bar = new Bar(this, client);
-
         drawArea = new DrawCanvas();
-
-
         drawArea.widthProperty().bind(stackpane.widthProperty());
         drawArea.heightProperty().bind(stackpane.heightProperty());
 
         stackpane.getChildren().addAll(new DrawCanvas(), drawArea);
 
-        layout.setTop(bar);
+        titleBar = new TitleBar(drawArea);
+        menuBar = new Bar(this, client);
+        bars.getChildren().addAll(titleBar, menuBar);
+
+        layout.setTop(bars);
         layout.setCenter(stackpane);
 
         scene = new Scene(layout, 500, 200);
 
         primaryScreenBounds = Screen.getPrimary().getVisualBounds();
 
+        this.initStyle(StageStyle.UNDECORATED);
         this.setTitle("Paint Brush");
         this.setScene(scene);
         this.setHeight(primaryScreenBounds.getHeight());
@@ -55,7 +59,7 @@ public class MainFrame extends Stage implements Bar.BarListener {
             close.operate();
         });
 
-        bar.clickBrush();
+        menuBar.clickBrush();
     }
 
     @Override
