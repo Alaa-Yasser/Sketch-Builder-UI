@@ -63,6 +63,10 @@ public class RectangleShape extends Shape {
 
         canvas.setOnMouseReleased(e -> {
             draw();
+            rect.setWidth(0);
+            rect.setHeight(0);
+            rectChange.setWidth(0);
+            rectChange.setHeight(0);
             canvas.setIsEdited(true);
         });
     }
