@@ -21,6 +21,8 @@ public class MainFrame extends Stage implements Bar.BarListener {
     private VBox bars;
     private Scene scene;
     private Rectangle2D primaryScreenBounds;
+    private double xOffset = 0;
+    private double yOffset = 0;
 
     public MainFrame (Client client) throws Exception{
 
@@ -52,6 +54,16 @@ public class MainFrame extends Stage implements Bar.BarListener {
         this.setHeight(STAGEHEIGHT);
         this.setResizable(false);
         this.show();
+
+        layout.setOnMousePressed(e -> {
+            xOffset = e.getSceneX();
+            yOffset = e.getSceneY();
+        });
+
+        layout.setOnMouseDragged(e -> {
+            this.setX(e.getScreenX() - xOffset);
+            this.setY(e.getScreenY() - yOffset);
+        });
 
         this.setOnCloseRequest(e -> {
             e.consume();
