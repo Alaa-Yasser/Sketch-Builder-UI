@@ -55,12 +55,12 @@ public class MainFrame extends Stage implements Bar.BarListener {
         this.setResizable(false);
         this.show();
 
-        layout.setOnMousePressed(e -> {
+        titleBar.setOnMousePressed(e -> {
             xOffset = e.getSceneX();
             yOffset = e.getSceneY();
         });
 
-        layout.setOnMouseDragged(e -> {
+        titleBar.setOnMouseDragged(e -> {
             this.setX(e.getScreenX() - xOffset);
             this.setY(e.getScreenY() - yOffset);
         });
