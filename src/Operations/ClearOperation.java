@@ -25,6 +25,7 @@ public class ClearOperation extends Operation {
         stackPane.getChildren().remove(0);
         stackPane.getChildren().add(0, new DrawCanvas());
         graphics.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        canvas.setIsEdited(false);
 
     }
 }
