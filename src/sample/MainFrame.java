@@ -44,11 +44,12 @@ public class MainFrame extends Stage implements Bar.BarListener {
         scene = new Scene(layout, 500, 200);
 
         primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+        final double STAGEHEIGHT = primaryScreenBounds.getHeight() - 20;
 
         this.initStyle(StageStyle.UNDECORATED);
         this.setTitle("Paint Brush");
         this.setScene(scene);
-        this.setHeight(primaryScreenBounds.getHeight());
+        this.setHeight(STAGEHEIGHT);
         this.setResizable(false);
         this.show();
 
