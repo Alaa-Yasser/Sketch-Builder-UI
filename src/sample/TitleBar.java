@@ -15,7 +15,7 @@ public class TitleBar extends BorderPane {
     private CloseOperation close;
     private DrawCanvas canvas;
 
-    public TitleBar (DrawCanvas canvas){
+    public TitleBar (DrawCanvas canvas, Stage stage){
         this.canvas = canvas;
 
         buttons = new HBox();
@@ -27,6 +27,7 @@ public class TitleBar extends BorderPane {
         bClose.setOnAction(e -> {
             e.consume();
             close = new CloseOperation();
+            close.setStage(stage);
             close.setCanvas(canvas);
             close.operate();
         });
