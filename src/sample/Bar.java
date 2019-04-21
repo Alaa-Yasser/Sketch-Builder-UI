@@ -43,8 +43,6 @@ public class Bar extends MenuBar {
         this.client = client;
         this.listener = listener;
 
-        this.setStyle("-fx-background-color: Silver; ");
-
         try{
             //FILE MENU
             file = new Menu("File");
