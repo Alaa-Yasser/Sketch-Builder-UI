@@ -21,7 +21,7 @@ public class SubmitOperation extends Operation implements Client.ServerResponse 
     @Override
     public void operate() {
         //try {
-        ((Runnable)()->client.sendMessage("hello there!!")).run();
+        ((Runnable)()->client.sendMessage("compile -p IMG_7504.jpg")).run();
                 //client.join();
 
         //}catch (InterruptedException ir){
@@ -31,7 +31,7 @@ public class SubmitOperation extends Operation implements Client.ServerResponse 
     }
 
     @Override
-    public void response(String message) {
+    public void response(String message, String response) {
         System.out.println(message);
     }
 }

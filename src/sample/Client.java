@@ -8,14 +8,14 @@ public class Client
 {
     // initialize socket and input output streams
     private Socket socket            = null;
-    private DataInputStream  input   = null;
-    private DataOutputStream out     = null;
+    private InputStream  input   = null;
+    private OutputStream out     = null;
     private String address;
     private int port;
     private String message, response;
 
     public interface ServerResponse{
-        void response(String message);
+        void response(String message, String response);
     }
 
     private ServerResponse serverResponse;
@@ -41,10 +41,10 @@ public class Client
             System.out.println("Connected");
 
             // takes input from socket
-            input  = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+            input  = socket.getInputStream();
 
             // sends output to the socket
-            out    = new DataOutputStream(socket.getOutputStream());
+            out    = socket.getOutputStream();
         }
         catch(IOException io)
         {
@@ -57,11 +57,15 @@ public class Client
 
         try
         {
-            out.writeUTF(message);
+            byte[] messageBytes = message.getBytes();
+            out.write(messageBytes);
             System.out.println("message is sent");
-            this.response = input.readUTF();
-            System.out.println("response = "+this.response);
-            serverResponse.response(this.response);
+//            InputStream inputStream = socket.getInputStream();
+            byte[] mess = recvMsg(input);
+            if(mess != null)
+                this.response = new String((mess)).substring(0, 3);
+            System.out.println("response = " + this.response+"_");
+            serverResponse.response(message, this.response);
         }
         catch(IOException io)
         {
@@ -83,5 +87,22 @@ public class Client
         }
     }
         //client client = new client(); for the submit button
+
+    public static byte[] recvMsg(InputStream inpustream) {
+        try {
+
+            byte len[] = new byte[1024];
+            int count = inpustream.read(len);
+
+            byte[] temp = new byte[count];
+            for (int i = 0; i < count; i++) {
+                temp[i] = len[i];
+            }
+            return temp;
+        } catch (Exception e) {
+            System.out.println("recvMsg() occur exception!" + e.toString());
+        }
+        return null;
+    }
 
 }

@@ -80,6 +80,8 @@ public class MainFrame extends Stage implements Bar.BarListener {
     }
 
     @Override
-    public void changeCursor(ImageCursor imageCursor)  { drawArea.setCursor(imageCursor); }
+    public void changeCursor(ImageCursor imageCursor)  {
+        drawArea.setCursor(imageCursor);
+    }
 
 }
