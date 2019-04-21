@@ -93,8 +93,8 @@ public class PaintFrame extends Stage implements Bar.BarListener {
         else  if (operation instanceof ClearOperation)
             ((ClearOperation)operation).setLayout(stackpane);
 
-//        else if (operation instanceof CloseOperation)
-//            ((CloseOperation) operation).setStage(this);
+        else if (operation instanceof CloseOperation)
+            ((CloseOperation) operation).setStage(this);
 
         operation.setCanvas(drawArea);
         operation.operate();

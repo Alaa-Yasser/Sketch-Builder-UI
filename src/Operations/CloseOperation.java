@@ -2,12 +2,18 @@ package Operations;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.stage.Stage;
 import sample.DrawCanvas;
 
 import java.util.Optional;
 
 public class CloseOperation extends Operation {
 
+    private Stage stage;
+
+    public  void setStage (Stage stage){
+            this.stage = stage;
+        }
 
     @Override
     public void setCanvas(DrawCanvas canvas) {
@@ -17,7 +23,7 @@ public class CloseOperation extends Operation {
     @Override
     public void operate() {
         if (!canvas.getIsEdited()){
-            System.exit(0);
+            stage.hide();
         }
         else
         {
@@ -30,13 +36,13 @@ public class CloseOperation extends Operation {
                         SaveOperation save = new SaveOperation();
                         save.setCanvas(canvas);
                         save.operate();
-                        System.exit(0);
+                        stage.hide();
                     } catch (Exception e1) {
                         e1.printStackTrace();
                     }
                 }
                 else if (result.get() == ButtonType.NO){
-                    System.exit(0);
+                    stage.hide();
                 }
                 else if (result.get() == ButtonType.CANCEL){
                     alert.hide();
