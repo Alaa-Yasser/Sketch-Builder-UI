@@ -13,7 +13,7 @@ public class Bar extends MenuBar {
     private Menu file;
     private MenuItem iOpen;
     private MenuItem iSave;
-    private MenuItem iSubmit;
+//    private MenuItem iSubmit;
     private MenuItem iClear;
     private MenuItem iClose;
 
@@ -84,13 +84,13 @@ public class Bar extends MenuBar {
             });
 
             //SUBMIT
-            iSubmit = new MenuItem("Submit");
-
-            imgSteram = new FileInputStream("icons/icons8-checkmark-64.png");
-            ImageView submitImg = new ImageView(new Image(imgSteram, 30, 30, false, true));
-            iSubmit.setGraphic(submitImg);
-
-            iSubmit.setOnAction(e -> listener.doOperation(new SubmitOperation(client)));
+//            iSubmit = new MenuItem("Submit");
+//
+//            imgSteram = new FileInputStream("icons/icons8-checkmark-64.png");
+//            ImageView submitImg = new ImageView(new Image(imgSteram, 30, 30, false, true));
+//            iSubmit.setGraphic(submitImg);
+//
+//            iSubmit.setOnAction(e -> listener.doOperation(new SubmitOperation(client)));
 
             //CLEAR
             iClear = new MenuItem("Clear");
@@ -111,7 +111,7 @@ public class Bar extends MenuBar {
             iClose.setOnAction(e -> listener.doOperation(new CloseOperation()));
 
             //ADD ITEMS TO FILE MENU
-            file.getItems().addAll(iOpen, iSave, iSubmit, iClear, iClose);
+            file.getItems().addAll(iOpen, iSave, iClear, iClose); //iSubmit,
 
             //***************************************************
 
