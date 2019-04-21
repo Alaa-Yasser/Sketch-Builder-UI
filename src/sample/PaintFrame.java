@@ -11,7 +11,7 @@ import javafx.scene.*;
 import javafx.scene.layout.*;
 import javafx.stage.*;
 
-public class MainFrame extends Stage implements Bar.BarListener {
+public class PaintFrame extends Stage implements Bar.BarListener {
 
     private Bar menuBar;
     private DrawCanvas drawArea;
@@ -23,8 +23,11 @@ public class MainFrame extends Stage implements Bar.BarListener {
     private Rectangle2D primaryScreenBounds;
     private double xOffset = 0;
     private double yOffset = 0;
+    private Client client;
 
-    public MainFrame (Client client) throws Exception{
+    public PaintFrame(Client client) throws Exception{
+
+        this.client = client;
 
         layout = new BorderPane();
         bars = new VBox();
@@ -36,7 +39,7 @@ public class MainFrame extends Stage implements Bar.BarListener {
 
         stackpane.getChildren().addAll(new DrawCanvas(), drawArea);
 
-        titleBar = new TitleBar(drawArea);
+        titleBar = new TitleBar(drawArea, this);
         menuBar = new Bar(this, client);
         bars.getChildren().addAll(titleBar, menuBar);
 
@@ -86,8 +89,13 @@ public class MainFrame extends Stage implements Bar.BarListener {
     public void doOperation (Operation operation){
         if (operation instanceof OpenOperation)
             ((OpenOperation)operation).setStage(this);
+
         else  if (operation instanceof ClearOperation)
             ((ClearOperation)operation).setLayout(stackpane);
+
+//        else if (operation instanceof CloseOperation)
+//            ((CloseOperation) operation).setStage(this);
+
         operation.setCanvas(drawArea);
         operation.operate();
     }

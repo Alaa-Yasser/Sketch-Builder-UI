@@ -56,11 +56,10 @@ public class OpenOperation extends Operation {
     private void open (){
         final FileChooser f = new FileChooser();
         File file = f.showOpenDialog(stage);
-        if (file != null) { // only proceed, if file was chosen
-            //  MainFrame openFrame = new MainFrame();
+        if (file != null)
+        {
             Image img = new Image(file.toURI().toString());
             graphics.drawImage(img, 0, 0);
-            // openFrame.drawArea.getGraphicsContext2D().drawImage(img, 0, 0);
         }
     }
 }
