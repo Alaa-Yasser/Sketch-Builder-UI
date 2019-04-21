@@ -20,14 +20,7 @@ public class SubmitOperation extends Operation implements Client.ServerResponse 
 
     @Override
     public void operate() {
-        //try {
         ((Runnable)()->client.sendMessage("hello there!!")).run();
-                //client.join();
-
-        //}catch (InterruptedException ir){
-         //   ir.printStackTrace();
-       // }
-
     }
 
     @Override

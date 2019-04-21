@@ -36,7 +36,7 @@ public class MainFrame extends Stage {
         inputImg = new Button("...");
         inputImg.setOnAction(e -> {
             FileChooser.ExtensionFilter imageFilter
-                    = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png");
+                    = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png", ".jpeg");
             final FileChooser f = new FileChooser();
             f.getExtensionFilters().add(imageFilter);
             File file = f.showOpenDialog(this);
