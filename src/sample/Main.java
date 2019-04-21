@@ -4,7 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-    static Client client;
+    public static Client client;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -15,9 +15,9 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         client = new Client("127.0.0.1", 1996);
-        client.connect();
+//        client.connect();
         launch(args);
-        client.disconnect();
+//        client.disconnect();
     }
 
 }

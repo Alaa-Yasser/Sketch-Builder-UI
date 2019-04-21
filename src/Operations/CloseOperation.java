@@ -3,6 +3,7 @@ package Operations;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import sample.DrawCanvas;
+import sample.Main;
 
 import java.util.Optional;
 
@@ -17,6 +18,7 @@ public class CloseOperation extends Operation {
     @Override
     public void operate() {
         if (!canvas.getIsEdited()){
+            closeServer();
             System.exit(0);
         }
         else
@@ -36,11 +38,16 @@ public class CloseOperation extends Operation {
                     }
                 }
                 else if (result.get() == ButtonType.NO){
+                    closeServer();
                     System.exit(0);
                 }
                 else if (result.get() == ButtonType.CANCEL){
                     alert.hide();
                 }
         }
+    }
+
+    private void closeServer(){
+        Main.client.sendMessage("exit");
     }
 }

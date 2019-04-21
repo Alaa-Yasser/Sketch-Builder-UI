@@ -8,8 +8,8 @@ public class Client
 {
     // initialize socket and input output streams
     private Socket socket            = null;
-    private InputStream  input   = null;
-    private OutputStream out     = null;
+//    private InputStream  input   = null;
+//    private OutputStream out     = null;
     private String address;
     private int port;
     private String message, response;
@@ -41,10 +41,7 @@ public class Client
             System.out.println("Connected");
 
             // takes input from socket
-            input  = socket.getInputStream();
 
-            // sends output to the socket
-            out    = socket.getOutputStream();
         }
         catch(IOException io)
         {
@@ -57,6 +54,11 @@ public class Client
 
         try
         {
+            connect();
+            InputStream input  = socket.getInputStream();
+
+            // sends output to the socket
+            OutputStream out    = socket.getOutputStream();
             byte[] messageBytes = message.getBytes();
             out.write(messageBytes);
             System.out.println("message is sent");
@@ -65,7 +67,11 @@ public class Client
             if(mess != null)
                 this.response = new String((mess)).substring(0, 3);
             System.out.println("response = " + this.response+"_");
-            serverResponse.response(message, this.response);
+            if(!message.equals("exit"))
+                serverResponse.response(message, this.response);
+            input.close();
+            out.close();
+            disconnect();
         }
         catch(IOException io)
         {
@@ -77,8 +83,7 @@ public class Client
     public void disconnect(){
         try
         {
-            input.close();
-            out.close();
+
             socket.close();
         }
         catch(IOException io)

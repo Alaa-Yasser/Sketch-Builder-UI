@@ -32,6 +32,14 @@ public class SubmitOperation extends Operation implements Client.ServerResponse 
 
     @Override
     public void response(String message, String response) {
-        System.out.println(message);
+        if(response.equals("200")){
+            if(message.contains("compile")){
+                client.sendMessage("equalize views/ json/");
+            }else if(message.contains("equalize")){
+                client.sendMessage("generate json/ code/");
+            }else if(message.contains("generate")){
+                System.out.println("Sketch converted to code");
+            }
+        }
     }
 }
