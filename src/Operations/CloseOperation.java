@@ -4,6 +4,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import sample.DrawCanvas;
+import sample.Main;
 
 import java.util.Optional;
 

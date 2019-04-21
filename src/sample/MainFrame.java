@@ -91,9 +91,21 @@ public class MainFrame extends Stage {
 
         scene = new Scene(layout, 250, 250);
 
+        this.setOnCloseRequest(event -> {
+            closeServer();
+            System.exit(0);
+        });
+
+
+
         this.setTitle("Sketch Builder");
         this.setScene(scene);
         this.setResizable(false);
         this.show();
+
+    }
+
+    private void closeServer(){
+        Main.client.sendMessage("exit");
     }
 }
