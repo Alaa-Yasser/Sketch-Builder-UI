@@ -80,7 +80,7 @@ public class MainFrame extends Stage {
 
         submitButton = new Button("Submit");
         submitButton.setPrefWidth(200);
-        submitButton.setOnAction(e -> new SubmitOperation(client));
+        submitButton.setOnAction(e -> new SubmitOperation("compile -p " + this.inputPath, this.outputPath));
 
         vBox = new VBox(5);
         vBox.getChildren().addAll(grid, submitButton, openButton);
