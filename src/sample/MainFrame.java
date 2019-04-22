@@ -45,6 +45,8 @@ public class MainFrame extends Stage {
                 inputPath = file.toString();
                 inputImgPath.setText(inputPath);
             }
+
+
         });
 
         outputImgPath = new TextField("Folder Path");
@@ -77,13 +79,21 @@ public class MainFrame extends Stage {
                 e1.printStackTrace();
             }
         });
-
+        CheckBox checkBox = new CheckBox("Use Image Processing");
         submitButton = new Button("Submit");
         submitButton.setPrefWidth(200);
-        submitButton.setOnAction(e -> new SubmitOperation("compile -p " + this.inputPath, this.outputPath));
+        submitButton.setOnAction(e -> {
+            String flag;
+            if(checkBox.isSelected())
+                flag = "-d";
+            else
+                flag = "-p";
+            new SubmitOperation("compile "+ flag + " " + this.inputPath, getFileName(this.inputPath),
+                this.outputPath).operate();});
+
 
         vBox = new VBox(5);
-        vBox.getChildren().addAll(grid, submitButton, openButton);
+        vBox.getChildren().addAll(checkBox, grid, submitButton, openButton);
         vBox.setAlignment(Pos.CENTER);
 
         layout = new StackPane();
@@ -107,5 +117,10 @@ public class MainFrame extends Stage {
 
     private void closeServer(){
         Main.client.sendMessage("exit");
+    }
+    private String getFileName(String path){
+        File file = new File(path);
+        String tmp = file.getName();
+        return (tmp.replace(tmp.substring(tmp.indexOf('.')), ""));
     }
 }

@@ -4,15 +4,18 @@ import sample.Client;
 import sample.DrawCanvas;
 import sample.Main;
 
+import java.io.File;
+
 public class SubmitOperation extends Operation implements Client.ServerResponse {
 
     private String request;
+    private String inputName;
     private String outputPath;
-    public SubmitOperation(String request, String outputPath){
+    public SubmitOperation(String request, String inputName,String outputPath){
        this.request = request;
+       this.inputName = inputName;
        this.outputPath = outputPath;
        Main.client.setServerResponse(SubmitOperation.this);
-       this.operate();
     }
 
     @Override
@@ -29,9 +32,9 @@ public class SubmitOperation extends Operation implements Client.ServerResponse 
     public void response(String message, String response) {
         if(response.equals("200")){
             if(message.contains("compile")){
-                this.request = "equalize views/ json/";
+                this.request = "equalize views/" + inputName +".viw json/";
             }else if(message.contains("equalize")){
-                this.request = "generate json/ " + this.outputPath;
+                this.request = "generate json/"+ inputName +".json " + this.outputPath;
             }else if(message.contains("generate")){
                 System.out.println("Sketch converted to code");
                 return;
@@ -41,4 +44,5 @@ public class SubmitOperation extends Operation implements Client.ServerResponse 
             this.operate();
         }
     }
+
 }
