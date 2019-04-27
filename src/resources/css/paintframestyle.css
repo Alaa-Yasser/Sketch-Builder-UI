@@ -1,0 +1,14 @@
+.menu .label, .menu-item .label {
+    -fx-text-fill: white;
+}
+
+.menu:hover, .menu:showing, .menu-item:focused {
+    -fx-background-color:  #669999;
+}
+
+.context-menu {
+    -fx-background-color: linear-gradient(#262626, #1a1a1a);
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 0 6 6 6, 0 5 5 5, 0 4 4 4;
+    -fx-padding: 4 1 8 1;
+}

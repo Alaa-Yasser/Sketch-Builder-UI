@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="500.0" stylesheets="/resources/css/paintframestyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+        <VBox BorderPane.alignment="CENTER">
+            <children>
+                <BorderPane fx:id="titleBar" prefHeight="0.0" prefWidth="500.0" style="-fx-background-color: #161a1d;">
+                    <center>
+                        <Text fill="#fcf8f8" strokeType="OUTSIDE" strokeWidth="0.0" text="Paint Brush" wrappingWidth="95.13671875" BorderPane.alignment="CENTER">
+                            <font>
+                                <Font name="Arial Unicode MS" size="18.0" />
+                            </font>
+                        </Text>
+                    </center>
+                    <right>
+                        <HBox alignment="CENTER" prefHeight="25.0" prefWidth="46.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <FontIcon iconColor="#f7f7f7" iconLiteral="fa-minus" iconSize="20" text="" wrappingWidth="21.0">
+                                    <HBox.margin>
+                                        <Insets />
+                                    </HBox.margin>
+                                </FontIcon>
+                                <FontIcon iconColor="#b90f0f" iconLiteral="fa-close" iconSize="20">
+                                    <HBox.margin>
+                                        <Insets />
+                                    </HBox.margin>
+                                </FontIcon>
+                            </children>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                        </HBox>
+                    </right>
+                </BorderPane>
+                <Pane prefHeight="5.0" prefWidth="500.0" style="-fx-background-color: #669999;" />
+                <MenuBar prefHeight="10.0" prefWidth="500.0" style="-fx-background-color: #161a1d;">
+                    <menus>
+                        <Menu mnemonicParsing="false" text="File">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Open" />
+                                <MenuItem mnemonicParsing="false" text="Save" />
+                                <MenuItem mnemonicParsing="false" text="Clear" />
+                                <MenuItem mnemonicParsing="false" text="Close" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Tools">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Brush" />
+                                <MenuItem mnemonicParsing="false" text="Line" />
+                                <MenuItem mnemonicParsing="false" text="Rectangle" />
+                                <MenuItem mnemonicParsing="false" text="Eraser" />
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+            </children>
+        </VBox>
+    </top>
+    <center>
+        <StackPane BorderPane.alignment="CENTER">
+            <children>
+                <Canvas height="401.0" width="500.0" />
+            </children>
+        </StackPane>
+    </center>
+   <left>
+      <Pane prefWidth="8.0" style="-fx-background-color: #161a1d;" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <Pane prefHeight="399.0" prefWidth="8.0" style="-fx-background-color: #161a1d;" BorderPane.alignment="CENTER" />
+   </right>
+   <bottom>
+      <Pane prefHeight="8.0" prefWidth="500.0" style="-fx-background-color: #161a1d;" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>
