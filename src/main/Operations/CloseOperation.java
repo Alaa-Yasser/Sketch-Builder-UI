@@ -1,65 +1,53 @@
-package Operations;
+package main.Operations;
 
-import javafx.scene.canvas.*;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.stage.*;
-import sample.DrawCanvas;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.stage.Stage;
+import main.sample.DrawCanvas;
+import main.sample.Main;
 
-import java.io.File;
 import java.util.Optional;
 
-public class OpenOperation extends Operation {
+public class CloseOperation extends Operation {
 
-    private GraphicsContext graphics;
     private Stage stage;
 
     public  void setStage (Stage stage){
-        this.stage = stage;
-    }
+            this.stage = stage;
+        }
 
     @Override
     public void setCanvas(DrawCanvas canvas) {
         this.canvas = canvas;
-        graphics = this.canvas.getGraphicsContext2D();
     }
 
     @Override
     public void operate() {
         if (!canvas.getIsEdited()){
-           open();
+            stage.hide();
         }
-        else{
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        else
+        {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setContentText("The current image is not saved. Save it?");
                 alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.YES){
                     try {
-                        SaveOperation s = new SaveOperation();
-                        s.setCanvas(canvas);
-                        s.operate();
-                        open();
+                        SaveOperation save = new SaveOperation();
+                        save.setCanvas(canvas);
+                        save.operate();
+                        stage.hide();
                     } catch (Exception e1) {
                         e1.printStackTrace();
                     }
                 }
                 else if (result.get() == ButtonType.NO){
-                    open();
+                    stage.hide();
                 }
                 else if (result.get() == ButtonType.CANCEL){
                     alert.hide();
                 }
-        }
-    }
-
-    private void open (){
-        final FileChooser f = new FileChooser();
-        File file = f.showOpenDialog(stage);
-        if (file != null)
-        {
-            Image img = new Image(file.toURI().toString());
-            graphics.drawImage(img, 0, 0);
         }
     }
 }

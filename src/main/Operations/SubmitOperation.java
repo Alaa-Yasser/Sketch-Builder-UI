@@ -1,8 +1,8 @@
-package Operations;
+package main.Operations;
 
-import sample.Client;
-import sample.DrawCanvas;
-import sample.Main;
+import main.sample.Client;
+import main.sample.DrawCanvas;
+import main.sample.Main;
 
 import java.io.File;
 

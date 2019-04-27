@@ -1,4 +1,4 @@
-package sample;
+package main.sample;
 
 import javafx.scene.canvas.Canvas;
 

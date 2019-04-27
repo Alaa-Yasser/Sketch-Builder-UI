@@ -1,6 +1,6 @@
-package sample;
+package main.sample;
 
-import Operations.SubmitOperation;
+import main.Operations.SubmitOperation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;

@@ -1,7 +1,7 @@
-package sample;
+package main.sample;
 
-import Operations.*;
-import Tools.*;
+import main.Operations.*;
+import main.Tools.*;
 import javafx.scene.ImageCursor;
 import javafx.scene.control.*;
 import javafx.scene.image.*;

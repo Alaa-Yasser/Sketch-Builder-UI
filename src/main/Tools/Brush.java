@@ -1,7 +1,7 @@
-package Tools;
+package main.Tools;
 
 import javafx.scene.canvas.*;
-import sample.DrawCanvas;
+import main.sample.DrawCanvas;
 
 
 public class Brush extends Tool {

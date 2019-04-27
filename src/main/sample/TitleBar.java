@@ -1,6 +1,6 @@
-package sample;
+package main.sample;
 
-import Operations.CloseOperation;
+import main.Operations.CloseOperation;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;

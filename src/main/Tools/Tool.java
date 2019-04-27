@@ -1,6 +1,6 @@
-package Tools;
+package main.Tools;
 
-import sample.DrawCanvas;
+import main.sample.DrawCanvas;
 
 public abstract class Tool {
     protected double initX, initY;

@@ -1,10 +1,10 @@
-package Tools;
+package main.Tools;
 
 import javafx.scene.Cursor;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.*;
-import sample.DrawCanvas;
+import main.sample.DrawCanvas;
 
 public class RectangleShape extends Shape {
 

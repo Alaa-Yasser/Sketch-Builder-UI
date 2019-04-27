@@ -1,6 +1,6 @@
-package Tools;
+package main.Tools;
 
-import Tools.Tool;
+import main.Tools.Tool;
 import javafx.scene.layout.StackPane;
 
 public abstract class Shape extends Tool {
