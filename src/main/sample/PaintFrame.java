@@ -1,5 +1,6 @@
 package main.sample;
 
+import javafx.fxml.FXMLLoader;
 import main.Operations.ClearOperation;
 import main.Operations.CloseOperation;
 import main.Operations.OpenOperation;
@@ -29,24 +30,26 @@ public class PaintFrame extends Stage implements Bar.BarListener {
 
         this.client = client;
 
-        layout = new BorderPane();
-        bars = new VBox();
-        stackpane = new StackPane();
+        Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/paintFrame.fxml"));
 
-        drawArea = new DrawCanvas();
-        drawArea.widthProperty().bind(stackpane.widthProperty());
-        drawArea.heightProperty().bind(stackpane.heightProperty());
+//        layout = new BorderPane();
+//        bars = new VBox();
+//        stackpane = new StackPane();
+//
+//        drawArea = new DrawCanvas();
+//        drawArea.widthProperty().bind(stackpane.widthProperty());
+//        drawArea.heightProperty().bind(stackpane.heightProperty());
+//
+//        stackpane.getChildren().addAll(new DrawCanvas(), drawArea);
+//
+//        titleBar = new TitleBar(drawArea, this);
+//        menuBar = new Bar(this, client);
+//        bars.getChildren().addAll(titleBar, menuBar);
+//
+//        layout.setTop(bars);
+//        layout.setCenter(stackpane);
 
-        stackpane.getChildren().addAll(new DrawCanvas(), drawArea);
-
-        titleBar = new TitleBar(drawArea, this);
-        menuBar = new Bar(this, client);
-        bars.getChildren().addAll(titleBar, menuBar);
-
-        layout.setTop(bars);
-        layout.setCenter(stackpane);
-
-        scene = new Scene(layout, 500, 200);
+        scene = new Scene(root, 500, 200);
 
         primaryScreenBounds = Screen.getPrimary().getVisualBounds();
         final double STAGEHEIGHT = primaryScreenBounds.getHeight() - 20;
@@ -58,24 +61,24 @@ public class PaintFrame extends Stage implements Bar.BarListener {
         this.setResizable(false);
         this.show();
 
-        titleBar.setOnMousePressed(e -> {
-            xOffset = e.getSceneX();
-            yOffset = e.getSceneY();
-        });
-
-        titleBar.setOnMouseDragged(e -> {
-            this.setX(e.getScreenX() - xOffset);
-            this.setY(e.getScreenY() - yOffset);
-        });
-
-        this.setOnCloseRequest(e -> {
-            e.consume();
-            CloseOperation close = new CloseOperation();
-            close.setCanvas(drawArea);
-            close.operate();
-        });
-
-        menuBar.clickBrush();
+//        titleBar.setOnMousePressed(e -> {
+//            xOffset = e.getSceneX();
+//            yOffset = e.getSceneY();
+//        });
+//
+//        titleBar.setOnMouseDragged(e -> {
+//            this.setX(e.getScreenX() - xOffset);
+//            this.setY(e.getScreenY() - yOffset);
+//        });
+//
+//        this.setOnCloseRequest(e -> {
+//            e.consume();
+//            CloseOperation close = new CloseOperation();
+//            close.setCanvas(drawArea);
+//            close.operate();
+//        });
+//
+//        menuBar.clickBrush();
     }
 
     @Override
