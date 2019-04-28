@@ -1,4 +1,4 @@
-package main.sample;
+package main.controller;
 
 import javafx.fxml.FXMLLoader;
 import main.Operations.ClearOperation;
@@ -24,11 +24,9 @@ public class PaintFrame extends Stage implements Bar.BarListener {
     private Rectangle2D primaryScreenBounds;
     private double xOffset = 0;
     private double yOffset = 0;
-    private Client client;
 
-    public PaintFrame(Client client) throws Exception{
 
-        this.client = client;
+    public PaintFrame() throws Exception{
 
         Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/paintFrame.fxml"));
 

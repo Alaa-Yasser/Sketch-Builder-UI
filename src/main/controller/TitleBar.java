@@ -1,4 +1,4 @@
-package main.sample;
+package main.controller;
 
 import main.Operations.CloseOperation;
 import javafx.scene.control.Button;

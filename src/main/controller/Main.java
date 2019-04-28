@@ -1,4 +1,4 @@
-package main.sample;
+package main.controller;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -9,7 +9,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        MainFrame mainFrame = new MainFrame(client);
+        GenerateCodeFrame generateCodeFrame = new GenerateCodeFrame();
 
     }
 

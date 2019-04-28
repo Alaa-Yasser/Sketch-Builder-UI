@@ -4,7 +4,7 @@ import javafx.scene.Cursor;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.*;
-import main.sample.DrawCanvas;
+import main.controller.DrawCanvas;
 
 public class RectangleShape extends Shape {
 

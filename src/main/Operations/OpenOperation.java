@@ -4,7 +4,7 @@ import javafx.scene.canvas.*;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.*;
-import main.sample.DrawCanvas;
+import main.controller.DrawCanvas;
 
 import java.io.File;
 import java.util.Optional;

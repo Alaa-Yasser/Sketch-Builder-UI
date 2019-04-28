@@ -1,10 +1,8 @@
 package main.Operations;
 
-import main.sample.Client;
-import main.sample.DrawCanvas;
-import main.sample.Main;
-
-import java.io.File;
+import main.controller.Client;
+import main.controller.DrawCanvas;
+import main.controller.Main;
 
 public class SubmitOperation extends Operation implements Client.ServerResponse {
 

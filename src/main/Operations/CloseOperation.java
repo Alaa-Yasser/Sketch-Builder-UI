@@ -3,8 +3,7 @@ package main.Operations;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
-import main.sample.DrawCanvas;
-import main.sample.Main;
+import main.controller.DrawCanvas;
 
 import java.util.Optional;
 

@@ -1,0 +1,58 @@
+.check-box:hover {
+    -fx-cursor: hand;
+}
+
+.check-box:selected > .box {
+/*     background color for selected checkbox */
+    -fx-background-color: #161a1d;
+}
+
+.check-box > .box {
+    -fx-background-color: #161a1d;
+    -fx-border-color: #cc0000;
+    -fx-border-radius: 10px
+}
+
+.check-box:selected > .box > .mark,
+.check-box:indeterminate  > .box > .mark {
+    /* modify mark color */
+    -fx-background-color: #cc0000;
+}
+
+
+.button {
+    -fx-text-fill:  white;
+    -fx-background-color: transparent;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-border-radius: 30px;
+    -fx-border-color: #cc0000;
+}
+.button:hover {
+    -fx-cursor: hand;
+    -fx-background-color: #af0326;
+    -fx-background-radius: 30px;
+}
+
+
+.combo-box .list-cell {
+    -fx-text-fill:  white;
+}
+
+.combo-box .list-view {
+    -fx-background-color: #161a1d;
+    -fx-border-color: #cc0000;
+    -fx-text-fill: white;
+    -fx-border-radius:30px;
+}
+
+.combo-box:hover {
+    -fx-cursor: hand;
+}
+
+
+.text-field {
+    -fx-border-insets: 0;
+    -fx-border-width: 2px;
+    -fx-border-color: transparent transparent white transparent;
+}

@@ -1,4 +1,4 @@
-package main.sample;
+package main.controller;
 
 import java.net.*;
 import java.io.*;

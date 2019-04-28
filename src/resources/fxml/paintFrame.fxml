@@ -20,21 +20,21 @@
             <children>
                 <BorderPane fx:id="titleBar" prefHeight="0.0" prefWidth="500.0" style="-fx-background-color: #161a1d;">
                     <center>
-                        <Text fill="#fcf8f8" strokeType="OUTSIDE" strokeWidth="0.0" text="Paint Brush" wrappingWidth="95.13671875" BorderPane.alignment="CENTER">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Paint Brush" wrappingWidth="109.13671875" BorderPane.alignment="CENTER">
                             <font>
-                                <Font name="Arial Unicode MS" size="18.0" />
+                                <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                             </font>
                         </Text>
                     </center>
                     <right>
-                        <HBox alignment="CENTER" prefHeight="25.0" prefWidth="46.0" BorderPane.alignment="CENTER">
+                        <HBox alignment="CENTER" prefHeight="23.0" prefWidth="38.0" BorderPane.alignment="CENTER">
                             <children>
-                                <FontIcon iconColor="#f7f7f7" iconLiteral="fa-minus" iconSize="20" text="" wrappingWidth="21.0">
+                                <FontIcon iconColor="WHITE" iconLiteral="fa-minus" iconSize="20" text="" wrappingWidth="21.0">
                                     <HBox.margin>
                                         <Insets />
                                     </HBox.margin>
                                 </FontIcon>
-                                <FontIcon iconColor="#b90f0f" iconLiteral="fa-close" iconSize="20">
+                                <FontIcon iconColor="#cc0000" iconLiteral="fa-close" iconSize="20">
                                     <HBox.margin>
                                         <Insets />
                                     </HBox.margin>
@@ -45,8 +45,11 @@
                             </opaqueInsets>
                         </HBox>
                     </right>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
                 </BorderPane>
-                <Pane prefHeight="5.0" prefWidth="500.0" style="-fx-background-color: #669999;" />
+                <Pane prefHeight="3.0" prefWidth="500.0" style="-fx-background-color: #cc0000;" />
                 <MenuBar prefHeight="10.0" prefWidth="500.0" style="-fx-background-color: #161a1d;">
                     <menus>
                         <Menu mnemonicParsing="false" text="File">
