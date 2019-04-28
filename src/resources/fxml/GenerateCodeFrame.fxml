@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
@@ -8,15 +9,14 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="338.0" prefWidth="588.0" stylesheets="@../css/GenerateCodeFrameStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.GenerateCodeFrameController">
+<BorderPane fx:id="rootBorder" stylesheets="@../css/GenerateCodeFrameStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.GenerateCodeFrameController">
     <top>
-        <VBox BorderPane.alignment="CENTER">
+        <VBox style="-fx-background-color: #161a1d;" BorderPane.alignment="CENTER">
             <children>
                 <BorderPane fx:id="titleBar" style="-fx-background-color: #161a1d;">
                     <right>
@@ -38,91 +38,77 @@
                         </Text>
                </left>
                 </BorderPane>
-                <Pane prefHeight="3.0" prefWidth="200.0" style="-fx-background-color: #cc0000;" />
-            </children>
-        </VBox>
-    </top>
-    <center>
-        <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #161a1d;" BorderPane.alignment="CENTER">
-            <children>
-                <VBox alignment="CENTER_RIGHT" prefHeight="287.0" prefWidth="341.0" spacing="5.0" StackPane.alignment="CENTER">
-                    <children>
-                        <BorderPane prefHeight="114.0" prefWidth="588.0">
-                            <right>
-                                <VBox prefHeight="135.0" prefWidth="35.0" spacing="15.0" BorderPane.alignment="CENTER">
+                <Pane prefHeight="3.0" prefWidth="588.0" style="-fx-background-color: #cc0000;" />
+                  <BorderPane prefHeight="102.0" prefWidth="588.0">
+               <top>
+                  <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                                <VBox prefHeight="108.0" prefWidth="536.0" spacing="25.0">
+                           <children>
+                              <TextField fx:id="inputPathText" editable="false" prefHeight="26.0" prefWidth="521.0" style="-fx-text-fill: white; -fx-background-color: #161a1d;" text="Image Path">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                              </TextField>
+                              <TextField fx:id="outputPathText" editable="false" style="-fx-text-fill: white; -fx-background-color: #161a1d;" text="Project Path">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                              </TextField>
+                           </children>
+                           <padding>
+                              <Insets left="10.0" right="5.0" top="10.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                                </VBox>
+                                <VBox prefHeight="95.0" prefWidth="46.0" spacing="20.0">
                                     <children>
                               <FontIcon fx:id="browseInputPathIcon" iconColor="#cc0000" iconLiteral="fa-ellipsis-h" iconSize="30" wrappingWidth="23.0" />
                               <FontIcon fx:id="browseOutputPathIcon" iconColor="#cc0000" iconLiteral="fa-ellipsis-h" iconSize="30" wrappingWidth="26.0" />
                                     </children>
                                     <padding>
-                                        <Insets bottom="30.0" left="10.0" right="10.0" top="30.0" />
+                                        <Insets left="10.0" right="10.0" top="20.0" />
                                     </padding>
                                 </VBox>
-                            </right>
-                     <center>
-                                <VBox prefHeight="109.0" prefWidth="440.0" spacing="25.0" BorderPane.alignment="CENTER">
-                                    <padding>
-                                        <Insets bottom="10.0" left="10.0" right="5.0" top="15.0" />
-                                    </padding>
-                           <children>
-                              <TextField fx:id="inputPathText" prefHeight="26.0" prefWidth="521.0" promptText="Image Path" style="-fx-text-fill: white; -fx-background-color: #161a1d;">
-                                 <font>
-                                    <Font name="Berlin Sans FB" size="12.0" />
-                                 </font></TextField>
-                              <TextField fx:id="outputPathText" promptText="Project Path" style="-fx-text-fill: white; -fx-background-color: #161a1d;">
-                                 <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="12.0" />
-                                 </font></TextField>
-                           </children>
-                                </VBox>
-                     </center>
-                        </BorderPane>
-                  <BorderPane prefHeight="126.0" prefWidth="588.0">
-                     <right>
-                        <VBox prefHeight="141.0" prefWidth="194.0" spacing="15.0" BorderPane.alignment="CENTER">
-                           <children>
-                                    <Button fx:id="submitButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="188.0" style="-fx-font-family: Berlin Sans FB Demi;" text="Submit">
-                                        <VBox.margin>
-                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                        </VBox.margin>
-                              </Button>
-                                    <Button fx:id="paintBrushButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="188.0" style="-fx-font-family: Berlin Sans FB Demi;" text="Paint Brush">
-                                        <VBox.margin>
-                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                        </VBox.margin>
-                              </Button>
-                           </children>
-                        </VBox>
-                     </right>
-                     <left>
-                        <VBox prefHeight="126.0" prefWidth="291.0" spacing="20.0" BorderPane.alignment="CENTER">
-                           <children>
-                                    <CheckBox fx:id="imageProcessingCheckBox" mnemonicParsing="false" prefHeight="26.0" prefWidth="248.0" text="Use Image Processing" textFill="WHITE">
-                                        <font>
-                                            <Font name="Berlin Sans FB Demi Bold" size="20.0" />
-                                        </font>
-                                 <VBox.margin>
-                                    <Insets left="5.0" />
-                                 </VBox.margin>
-                                    </CheckBox>
-                              <ComboBox prefHeight="28.0" prefWidth="221.0" promptText="Language" style="-fx-background-color: #161a1d; -fx-border-color: #cc0000; -fx-border-radius: 30px;">
-                                 <VBox.margin>
-                                    <Insets left="5.0" />
-                                 </VBox.margin>
-                              </ComboBox>
-                           </children>
-                           <BorderPane.margin>
-                              <Insets left="5.0" />
-                           </BorderPane.margin>
-                        </VBox>
-                     </left>
-                     <VBox.margin>
-                        <Insets right="5.0" />
-                     </VBox.margin>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                  </HBox>
+               </top>
                   </BorderPane>
-                    </children>
-                </VBox>
+            <BorderPane prefHeight="162.0" prefWidth="588.0">
+               <bottom>
+                        <Button fx:id="submitButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="188.0" style="-fx-font-family: Berlin Sans FB Demi;" text="Submit" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets bottom="5.0" right="5.0" />
+                     </BorderPane.margin>
+                  </Button>
+               </bottom>
+               <left>
+                  <ComboBox fx:id="languageComboBox" prefHeight="28.0" prefWidth="221.0" promptText="Language" style="-fx-background-color: #161a1d; -fx-border-color: #cc0000; -fx-border-radius: 30px;" BorderPane.alignment="TOP_LEFT">
+                     <BorderPane.margin>
+                        <Insets left="7.0" />
+                     </BorderPane.margin>
+                  </ComboBox>
+               </left>
+               <right>
+                        <CheckBox fx:id="imageProcessingCheckBox" mnemonicParsing="false" prefHeight="26.0" prefWidth="248.0" text="Use Image Processing" textFill="WHITE" BorderPane.alignment="TOP_RIGHT">
+                            <font>
+                                <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                            </font>
+                        </CheckBox>
+               </right>
+            </BorderPane>
             </children>
-        </StackPane>
-    </center>
+        </VBox>
+    </top>
 </BorderPane>

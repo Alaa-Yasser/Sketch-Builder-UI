@@ -1,11 +1,9 @@
 package main.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextField;
-import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
+import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.*;
 import main.Operations.SubmitOperation;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -14,36 +12,49 @@ import java.io.File;
 public class GenerateCodeFrameController {
 
     @FXML
+    BorderPane titleBar;
+    @FXML
     FontIcon closeIcon;
     @FXML
-    Button submitButton;
-    @FXML
-    CheckBox imageProcessingCheckBox;
+    FontIcon minusIcon;
     @FXML
     TextField inputPathText;
     @FXML
-    TextField outputPathText;
-    @FXML
     FontIcon browseInputPathIcon;
+    @FXML
+    TextField outputPathText;
     @FXML
     FontIcon browseOutputPathIcon;
     @FXML
-    Button paintBrushButton;
+    CheckBox imageProcessingCheckBox;
+    @FXML
+    ComboBox languageComboBox;
+    @FXML
+    Button submitButton;
+
+    private double xOffset;
+    private double yOffset;
 
 
     public void initialize() {
-        closeIcon.setOnMousePressed(event -> closeIcon.getScene().getWindow().hide());
 
-        submitButton.setOnAction(event ->{
-            String flag;
-            if(imageProcessingCheckBox.isSelected())
-                flag = "-d";
-            else
-                flag = "-p";
-            new SubmitOperation("compile "+ flag + " " + this.inputPathText.getText(),
-                    getFileName(this.inputPathText.getText()),
-                this.outputPathText.getText()).operate();
+        titleBar.setOnMousePressed(e -> {
+            xOffset = e.getSceneX();
+            yOffset = e.getSceneY();
         });
+
+        titleBar.setOnMouseDragged(e -> {
+            (titleBar.getScene().getWindow()).setX(e.getScreenX() - xOffset);
+            (titleBar.getScene().getWindow()).setY(e.getScreenY() - yOffset);
+        });
+
+
+
+        closeIcon.setOnMousePressed(event -> {
+            closeIcon.getScene().getWindow().hide();
+        });
+
+        minusIcon.setOnMousePressed(event -> ((Stage)(minusIcon.getScene().getWindow())).setIconified(true));
 
         browseInputPathIcon.setOnMousePressed(event -> {
             FileChooser.ExtensionFilter imageFilter
@@ -66,13 +77,21 @@ public class GenerateCodeFrameController {
             }
         });
 
-        paintBrushButton.setOnAction(event -> {
-            try {
-                new PaintFrame();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        languageComboBox.getItems().addAll("Android", "HTML", "C#");
+
+        submitButton.setOnAction(event ->{
+            String flag;
+            if(imageProcessingCheckBox.isSelected())
+                flag = "-d";
+            else
+                flag = "-p";
+            new SubmitOperation("compile "+ flag + " " + this.inputPathText.getText(),
+                    getFileName(this.inputPathText.getText()),
+                    this.outputPathText.getText()).operate();
         });
+
+        inputPathText.setFocusTraversable(false);
+        outputPathText.setFocusTraversable(false);
     }
 
     private String getFileName(String path){
