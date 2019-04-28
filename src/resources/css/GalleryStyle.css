@@ -5,6 +5,7 @@
 
 .menu:hover, .menu:showing, .menu-item:focused {
     -fx-background-color: #cc0000;
+    -fx-cursor: hand;
 }
 
 .context-menu {

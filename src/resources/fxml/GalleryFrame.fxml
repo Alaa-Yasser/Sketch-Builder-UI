@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="618.0" prefWidth="600.0" stylesheets="@../css/GalleryStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.GalleryFrameController">
+   <top>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <BorderPane fx:id="titleBar" style="-fx-background-color: #161a1d;">
+               <right>
+                  <HBox alignment="CENTER" prefHeight="23.0" prefWidth="48.0" spacing="5.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <FontIcon fx:id="minusIcon" iconColor="WHITE" iconLiteral="fa-minus" iconSize="18" wrappingWidth="20.0" />
+                        <FontIcon fx:id="maximizeIcon" iconColor="WHITE" iconLiteral="fa-window-maximize" wrappingWidth="12.0" />
+                        <FontIcon fx:id="closeIcon" iconColor="#cc0000" iconLiteral="fa-close" iconSize="20" wrappingWidth="19.0" />
+                     </children>
+                  </HBox>
+               </right>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <left>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sketch Builder" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                     </font>
+                  </Text>
+               </left>
+            </BorderPane>
+            <Pane prefHeight="3.0" prefWidth="200.0" style="-fx-background-color: #cc0000;" />
+            <MenuBar style="-fx-background-color: #161a1d;">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                        <MenuItem fx:id="openImageItem" mnemonicParsing="false" text="Open Image" />
+                        <MenuItem fx:id="drawImageItem" mnemonicParsing="false" text="Draw Image" />
+                        <MenuItem fx:id="convertItem" mnemonicParsing="false" text="Convert" />
+                    <MenuItem fx:id="closeItem" mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                        <MenuItem mnemonicParsing="false" text="Modify" />
+                        <MenuItem mnemonicParsing="false" text="Select" />
+                        <MenuItem mnemonicParsing="false" text="Paste" />
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                        <MenuItem mnemonicParsing="false" text="Clear" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                        <MenuItem mnemonicParsing="false" text="Documentation" />
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </children>
+      </VBox>
+   </top>
+   <left>
+      <Pane prefHeight="200.0" prefWidth="8.0" style="-fx-background-color: #161a1d;" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <Pane prefHeight="200.0" prefWidth="8.0" style="-fx-background-color: #161a1d;" BorderPane.alignment="CENTER" />
+   </right>
+   <bottom>
+      <Pane prefHeight="8.0" prefWidth="200.0" style="-fx-background-color: #161a1d;" BorderPane.alignment="CENTER" />
+   </bottom>
+   <center>
+      <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #333333;" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
