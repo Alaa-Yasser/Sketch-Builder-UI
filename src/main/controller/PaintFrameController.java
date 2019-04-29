@@ -6,7 +6,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import org.kordamp.ikonli.javafx.FontIcon;
 
-public class GalleryFrameController {
+public class PaintFrameController {
 
     @FXML
     BorderPane titleBar;
@@ -15,14 +15,11 @@ public class GalleryFrameController {
     @FXML
     FontIcon minusIcon;
     @FXML
-    MenuItem drawImageItem;
-    @FXML
-    MenuItem convertItem;
-    @FXML
     MenuItem closeItem;
 
     private double xOffset;
     private double yOffset;
+
 
     public void initialize() {
 
@@ -37,29 +34,14 @@ public class GalleryFrameController {
         });
 
 
-        closeIcon.setOnMousePressed(event -> {
-            Main.client.sendMessage("exit");
-            closeIcon.getScene().getWindow().hide();
-        });
+        closeIcon.setOnMousePressed(event -> closeIcon.getScene().getWindow().hide());
 
-        minusIcon.setOnMousePressed(event -> ((Stage)(minusIcon.getScene().getWindow())).setIconified(true));
+        minusIcon.setOnMousePressed(event -> ((Stage) (minusIcon.getScene().getWindow())).setIconified(true));
 
-
-        drawImageItem.setOnAction(event -> {
-            try {
-                new PaintFrame();
-            } catch (Exception e) { e.printStackTrace(); }
-        });
-
-
-        convertItem.setOnAction(event -> new GenerateCodeFrame());
 
         closeItem.setOnAction(event -> {
             Main.client.sendMessage("exit");
             closeIcon.getScene().getWindow().hide();
         });
-
     }
-
 }
-

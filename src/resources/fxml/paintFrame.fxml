@@ -14,27 +14,20 @@
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="500.0" stylesheets="/resources/css/paintframestyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="500.0" stylesheets="/resources/css/paintframestyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.PaintFrameController">
     <top>
         <VBox BorderPane.alignment="CENTER">
             <children>
                 <BorderPane fx:id="titleBar" prefHeight="0.0" prefWidth="500.0" style="-fx-background-color: #161a1d;">
-                    <center>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Paint Brush" wrappingWidth="109.13671875" BorderPane.alignment="CENTER">
-                            <font>
-                                <Font name="Berlin Sans FB Demi Bold" size="20.0" />
-                            </font>
-                        </Text>
-                    </center>
                     <right>
                         <HBox alignment="CENTER" prefHeight="23.0" prefWidth="38.0" BorderPane.alignment="CENTER">
                             <children>
-                                <FontIcon iconColor="WHITE" iconLiteral="fa-minus" iconSize="20" text="" wrappingWidth="21.0">
+                                <FontIcon fx:id="minusIcon" iconColor="WHITE" iconLiteral="fa-minus" iconSize="20" text="" wrappingWidth="21.0">
                                     <HBox.margin>
                                         <Insets />
                                     </HBox.margin>
                                 </FontIcon>
-                                <FontIcon iconColor="#cc0000" iconLiteral="fa-close" iconSize="20">
+                                <FontIcon fx:id="closeIcon" iconColor="#cc0000" iconLiteral="fa-close" iconSize="20">
                                     <HBox.margin>
                                         <Insets />
                                     </HBox.margin>
@@ -48,6 +41,13 @@
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
+               <left>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Paint Brush" wrappingWidth="109.13671875" BorderPane.alignment="CENTER">
+                            <font>
+                                <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                            </font>
+                        </Text>
+               </left>
                 </BorderPane>
                 <Pane prefHeight="3.0" prefWidth="500.0" style="-fx-background-color: #cc0000;" />
                 <MenuBar prefHeight="10.0" prefWidth="500.0" style="-fx-background-color: #161a1d;">
@@ -57,7 +57,7 @@
                                 <MenuItem mnemonicParsing="false" text="Open" />
                                 <MenuItem mnemonicParsing="false" text="Save" />
                                 <MenuItem mnemonicParsing="false" text="Clear" />
-                                <MenuItem mnemonicParsing="false" text="Close" />
+                                <MenuItem fx:id="closeItem" mnemonicParsing="false" text="Close" />
                             </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Tools">
