@@ -1,9 +1,14 @@
 package main.Tools;
 
 import javafx.scene.Cursor;
+import javafx.scene.ImageCursor;
 import javafx.scene.canvas.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import main.controller.DrawCanvas;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class Line extends Shape {
     private GraphicsContext graphics;
@@ -20,8 +25,6 @@ public class Line extends Shape {
     public void setCanvas(DrawCanvas canvas) {
         this.canvas = canvas;
         graphics = this.canvas.getGraphicsContext2D();
-
-        canvas.setCursor(Cursor.CROSSHAIR);
 
         canvas.setOnMousePressed(e -> {
             super.initX = e.getX();
@@ -48,6 +51,11 @@ public class Line extends Shape {
             canvas.setIsEdited(true);
         });
 
+    }
+
+    @Override
+    public void setCursor() {
+        canvas.setCursor(Cursor.CROSSHAIR);
     }
 
     @Override

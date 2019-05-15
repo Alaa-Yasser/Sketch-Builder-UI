@@ -1,10 +1,15 @@
 package main.Tools;
 
 import javafx.scene.Cursor;
+import javafx.scene.ImageCursor;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.*;
 import main.controller.DrawCanvas;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class RectangleShape extends Shape {
 
@@ -27,8 +32,6 @@ public class RectangleShape extends Shape {
     public void setCanvas(DrawCanvas canvas) {
         this.canvas = canvas;
         graphics = this.canvas.getGraphicsContext2D();
-
-        canvas.setCursor(Cursor.CROSSHAIR);
 
         canvas.setOnMousePressed(e -> {
             rect.setX(e.getX());
@@ -69,6 +72,11 @@ public class RectangleShape extends Shape {
             rectChange.setHeight(0);
             canvas.setIsEdited(true);
         });
+    }
+
+    @Override
+    public void setCursor() {
+        canvas.setCursor(Cursor.CROSSHAIR);
     }
 
     @Override
