@@ -5,6 +5,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import main.Operations.ClearOperation;
 import main.Operations.OpenOperation;
 import main.Tools.Brush;
 import main.Tools.Erase;
@@ -24,6 +25,8 @@ public class PaintFrameController {
     FontIcon minusIcon;
     @FXML
     MenuItem openItem;
+    @FXML
+    MenuItem clearItem;
     @FXML
     MenuItem closeItem;
     @FXML
@@ -64,6 +67,13 @@ public class PaintFrameController {
             open.setStage((Stage) (mainLayout.getScene().getWindow()));
             open.setCanvas(drawCanvas);
             open.operate();
+        });
+
+        clearItem.setOnAction(event -> {
+            ClearOperation clear = new ClearOperation();
+            clear.setLayout(stackPane);
+            clear.setCanvas(drawCanvas);
+            clear.operate();
         });
 
         closeItem.setOnAction(event -> {

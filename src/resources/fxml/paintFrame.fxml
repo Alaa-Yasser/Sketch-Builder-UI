@@ -62,7 +62,7 @@
                             <items>
                                 <MenuItem fx:id="openItem" mnemonicParsing="false" text="Open" />
                                 <MenuItem mnemonicParsing="false" text="Save" />
-                                <MenuItem mnemonicParsing="false" text="Clear" />
+                                <MenuItem fx:id="clearItem" mnemonicParsing="false" text="Clear" />
                                 <MenuItem fx:id="closeItem" mnemonicParsing="false" text="Close" />
                             </items>
                         </Menu>
