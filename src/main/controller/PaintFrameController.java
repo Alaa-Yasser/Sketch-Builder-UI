@@ -7,6 +7,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import main.Operations.ClearOperation;
 import main.Operations.OpenOperation;
+import main.Operations.SaveOperation;
 import main.Tools.Brush;
 import main.Tools.Erase;
 import org.kordamp.ikonli.javafx.FontIcon;
@@ -25,6 +26,8 @@ public class PaintFrameController {
     FontIcon minusIcon;
     @FXML
     MenuItem openItem;
+    @FXML
+    MenuItem saveItem;
     @FXML
     MenuItem clearItem;
     @FXML
@@ -67,6 +70,13 @@ public class PaintFrameController {
             open.setStage((Stage) (mainLayout.getScene().getWindow()));
             open.setCanvas(drawCanvas);
             open.operate();
+        });
+
+        saveItem.setOnAction(event -> {
+            SaveOperation save = new SaveOperation();
+            save.setStage((Stage) (mainLayout.getScene().getWindow()));
+            save.setCanvas(drawCanvas);
+            save.operate();
         });
 
         clearItem.setOnAction(event -> {

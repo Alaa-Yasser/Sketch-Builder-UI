@@ -34,6 +34,7 @@ public class CloseOperation extends Operation {
                 if (result.get() == ButtonType.YES){
                     try {
                         SaveOperation save = new SaveOperation();
+                        save.setStage(stage);
                         save.setCanvas(canvas);
                         save.operate();
                         stage.hide();

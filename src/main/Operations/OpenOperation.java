@@ -37,6 +37,7 @@ public class OpenOperation extends Operation {
                 if (result.get() == ButtonType.YES){
                     try {
                         SaveOperation s = new SaveOperation();
+                        s.setStage(stage);
                         s.setCanvas(canvas);
                         s.operate();
                         open();

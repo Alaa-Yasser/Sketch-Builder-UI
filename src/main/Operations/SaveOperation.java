@@ -1,50 +1,51 @@
 package main.Operations;
 
 import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.canvas.*;
 import javafx.scene.image.WritableImage;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import main.controller.DrawCanvas;
 
 import javax.imageio.ImageIO;
 import java.io.File;
+import java.io.IOException;
 
 public class SaveOperation extends Operation {
 
-    private GraphicsContext graphics;
+    private Stage stage;
+
+    public  void setStage (Stage stage){
+        this.stage = stage;
+    }
 
     @Override
     public void setCanvas(DrawCanvas canvas) {
         this.canvas = canvas;
-        graphics = this.canvas.getGraphicsContext2D();
     }
 
     @Override
     public void operate() {
-            WritableImage image = new WritableImage((int)canvas.getWidth(), (int)canvas.getHeight());
-            canvas.snapshot(null, image);
+        WritableImage image = new WritableImage((int)canvas.getWidth(), (int)canvas.getHeight());
+        canvas.snapshot(null, image);
 
-            File imagefile = new File(images_Name());
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Image");
+
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.png");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        File imageFile = fileChooser.showSaveDialog(stage);
+
+        if (imageFile != null) {
             try {
-                ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", imagefile);
-            } catch (Exception s) {
-                System.err.println("Couldn't save the file!");}
+                ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", imageFile);
+            } catch (IOException s) {
+                System.err.println("Couldn't save the file!");
+            }
+        }
 
             canvas.setIsEdited(false);
     }
 
-    public String images_Name ()
-    {
-        File folder = new File(System.getProperty("user.dir")+"//images");
-        File[] listOfFiles = folder.listFiles();
 
-        int lastImageIndex;
-
-        if(listOfFiles == null)
-            lastImageIndex = 0;
-        else
-            lastImageIndex = listOfFiles.length;
-
-        String str = "images/img_" + lastImageIndex + ".png";
-        return str;
-    }
 }
