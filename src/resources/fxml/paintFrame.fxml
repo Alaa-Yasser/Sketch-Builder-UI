@@ -71,7 +71,7 @@
                                 <MenuItem fx:id="brushItem" mnemonicParsing="false" text="Brush" />
                                 <MenuItem mnemonicParsing="false" text="Line" />
                                 <MenuItem mnemonicParsing="false" text="Rectangle" />
-                                <MenuItem mnemonicParsing="false" text="Eraser" />
+                                <MenuItem fx:id="eraseItem" mnemonicParsing="false" text="Eraser" />
                             </items>
                         </Menu>
                     </menus>

@@ -6,6 +6,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import main.Tools.Brush;
+import main.Tools.Erase;
+import main.Tools.Line;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.FileNotFoundException;
@@ -22,6 +24,8 @@ public class PaintFrameController {
     MenuItem closeItem;
     @FXML
     MenuItem brushItem;
+    @FXML
+    MenuItem eraseItem;
     @FXML
     StackPane stackPane;
     @FXML
@@ -66,6 +70,17 @@ public class PaintFrameController {
                 e.printStackTrace();
             }
             brush.draw();
+        });
+
+        eraseItem.setOnAction(event -> {
+            Erase erase = new Erase();
+            erase.setCanvas(drawCanvas);
+            try {
+                erase.setCursor();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            erase.draw();
         });
     }
 }
