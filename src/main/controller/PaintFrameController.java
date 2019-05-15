@@ -3,8 +3,12 @@ package main.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import main.Tools.Brush;
 import org.kordamp.ikonli.javafx.FontIcon;
+
+import java.io.FileNotFoundException;
 
 public class PaintFrameController {
 
@@ -16,12 +20,21 @@ public class PaintFrameController {
     FontIcon minusIcon;
     @FXML
     MenuItem closeItem;
+    @FXML
+    MenuItem brushItem;
+    @FXML
+    StackPane stackPane;
+    @FXML
+    DrawCanvas drawCanvas;
 
     private double xOffset;
     private double yOffset;
 
 
     public void initialize() {
+
+        drawCanvas.widthProperty().bind(stackPane.widthProperty());
+        drawCanvas.heightProperty().bind(stackPane.heightProperty());
 
         titleBar.setOnMousePressed(e -> {
             xOffset = e.getSceneX();
@@ -42,6 +55,17 @@ public class PaintFrameController {
         closeItem.setOnAction(event -> {
             Main.client.sendMessage("exit");
             closeIcon.getScene().getWindow().hide();
+        });
+
+        brushItem.setOnAction(event -> {
+            Brush brush = new Brush();
+            brush.setCanvas(drawCanvas);
+            try {
+                brush.setCursor();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            brush.draw();
         });
     }
 }

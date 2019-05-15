@@ -1,7 +1,12 @@
 package main.Tools;
 
+import javafx.scene.ImageCursor;
 import javafx.scene.canvas.*;
+import javafx.scene.image.Image;
 import main.controller.DrawCanvas;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 
 public class Brush extends Tool {
@@ -27,6 +32,14 @@ public class Brush extends Tool {
             graphics.stroke();
         });
         canvas.setOnMouseReleased(e -> canvas.setIsEdited(true));
+    }
+
+    @Override
+    public void setCursor() throws FileNotFoundException {
+        FileInputStream cursorImgStream = new FileInputStream("icons/icons8-paint-filled-100.png");
+        Image cursorImage = new Image(cursorImgStream);
+        ImageCursor imageCursor = new ImageCursor(cursorImage);
+        canvas.setCursor(imageCursor);
     }
 
     @Override
