@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -14,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
-
+<?import main.controller.DrawCanvas?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="500.0" stylesheets="/resources/css/paintframestyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.PaintFrameController">
     <top>
         <VBox BorderPane.alignment="CENTER">
@@ -69,7 +68,7 @@
                         </Menu>
                         <Menu mnemonicParsing="false" text="Tools">
                             <items>
-                                <MenuItem mnemonicParsing="false" text="Brush" />
+                                <MenuItem fx:id="brushItem" mnemonicParsing="false" text="Brush" />
                                 <MenuItem mnemonicParsing="false" text="Line" />
                                 <MenuItem mnemonicParsing="false" text="Rectangle" />
                                 <MenuItem mnemonicParsing="false" text="Eraser" />
@@ -81,9 +80,9 @@
         </VBox>
     </top>
     <center>
-        <StackPane BorderPane.alignment="CENTER">
+        <StackPane fx:id="stackPane" BorderPane.alignment="CENTER">
             <children>
-                <Canvas height="401.0" width="500.0" />
+                <DrawCanvas fx:id="drawCanvas" height="401.0" width="500.0" />
             </children>
         </StackPane>
     </center>
