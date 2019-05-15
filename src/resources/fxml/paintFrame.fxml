@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 <?import main.controller.DrawCanvas?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="500.0" stylesheets="/resources/css/paintframestyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.PaintFrameController">
+<BorderPane fx:id="mainLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="500.0" stylesheets="/resources/css/paintframestyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.PaintFrameController">
     <top>
         <VBox BorderPane.alignment="CENTER">
             <children>
@@ -60,7 +60,7 @@
                     <menus>
                         <Menu mnemonicParsing="false" text="File">
                             <items>
-                                <MenuItem mnemonicParsing="false" text="Open" />
+                                <MenuItem fx:id="openItem" mnemonicParsing="false" text="Open" />
                                 <MenuItem mnemonicParsing="false" text="Save" />
                                 <MenuItem mnemonicParsing="false" text="Clear" />
                                 <MenuItem fx:id="closeItem" mnemonicParsing="false" text="Close" />

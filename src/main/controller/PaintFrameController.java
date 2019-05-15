@@ -5,9 +5,9 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import main.Operations.OpenOperation;
 import main.Tools.Brush;
 import main.Tools.Erase;
-import main.Tools.Line;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.FileNotFoundException;
@@ -15,11 +15,15 @@ import java.io.FileNotFoundException;
 public class PaintFrameController {
 
     @FXML
+    BorderPane mainLayout;
+    @FXML
     BorderPane titleBar;
     @FXML
     FontIcon closeIcon;
     @FXML
     FontIcon minusIcon;
+    @FXML
+    MenuItem openItem;
     @FXML
     MenuItem closeItem;
     @FXML
@@ -33,7 +37,6 @@ public class PaintFrameController {
 
     private double xOffset;
     private double yOffset;
-
 
     public void initialize() {
 
@@ -55,6 +58,13 @@ public class PaintFrameController {
 
         minusIcon.setOnMousePressed(event -> ((Stage) (minusIcon.getScene().getWindow())).setIconified(true));
 
+
+        openItem.setOnAction(event -> {
+            OpenOperation open = new OpenOperation();
+            open.setStage((Stage) (mainLayout.getScene().getWindow()));
+            open.setCanvas(drawCanvas);
+            open.operate();
+        });
 
         closeItem.setOnAction(event -> {
             Main.client.sendMessage("exit");
