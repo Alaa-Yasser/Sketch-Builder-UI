@@ -6,6 +6,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import main.Operations.ClearOperation;
+import main.Operations.CloseOperation;
 import main.Operations.OpenOperation;
 import main.Operations.SaveOperation;
 import main.Tools.Brush;
@@ -60,7 +61,13 @@ public class PaintFrameController {
         });
 
 
-        closeIcon.setOnMousePressed(event -> closeIcon.getScene().getWindow().hide());
+        closeIcon.setOnMousePressed(event -> {
+            Main.client.sendMessage("exit");
+            CloseOperation close = new CloseOperation();
+            close.setStage((Stage) (mainLayout.getScene().getWindow()));
+            close.setCanvas(drawCanvas);
+            close.operate();
+        });
 
         minusIcon.setOnMousePressed(event -> ((Stage) (minusIcon.getScene().getWindow())).setIconified(true));
 
@@ -88,7 +95,10 @@ public class PaintFrameController {
 
         closeItem.setOnAction(event -> {
             Main.client.sendMessage("exit");
-            closeIcon.getScene().getWindow().hide();
+            CloseOperation close = new CloseOperation();
+            close.setStage((Stage) (mainLayout.getScene().getWindow()));
+            close.setCanvas(drawCanvas);
+            close.operate();
         });
 
         brushItem.setOnAction(event -> {
