@@ -2,17 +2,18 @@ package main.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.*;
 import main.Operations.SubmitOperation;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.File;
+import java.util.List;
 
 public class GenerateCodeFrameController {
 
     @FXML
-    BorderPane titleBar;
+    HBox titleBar;
     @FXML
     FontIcon closeIcon;
     @FXML
@@ -61,10 +62,10 @@ public class GenerateCodeFrameController {
                     = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png", ".jpeg");
             final FileChooser f = new FileChooser();
             f.getExtensionFilters().add(imageFilter);
-            File file = f.showOpenDialog(browseInputPathIcon.getScene().getWindow());
+            List<File> files = f.showOpenMultipleDialog(browseInputPathIcon.getScene().getWindow());
 
-            if (file != null) {
-                inputPathText.setText(file.toString());
+            if (files.size() != 0) {
+               setImagePath(files);
             }
         });
 
@@ -78,6 +79,7 @@ public class GenerateCodeFrameController {
         });
 
         languageComboBox.getItems().addAll("Android", "HTML", "C#");
+//        boolean s = languageComboBox.getValue().equals("HTML");
 
         submitButton.setOnAction(event ->{
             String flag;
@@ -98,5 +100,18 @@ public class GenerateCodeFrameController {
         File file = new File(path);
         String tmp = file.getName();
         return (tmp.replace(tmp.substring(tmp.indexOf('.')), ""));
+    }
+
+    public void setImagePath (File imageFile) {
+        inputPathText.setText( imageFile.toString());
+    }
+
+
+    public void setImagePath (List<File> imagesFiles) {
+        String path = "";
+        for (File file : imagesFiles){
+            path += file.toString() + " ";
+        }
+        inputPathText.setText(path);
     }
 }
