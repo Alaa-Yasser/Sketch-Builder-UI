@@ -7,18 +7,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 
-/**
- * ************* OnDragResizeEventListener **********
- *
- * You need to override OnDragResizeEventListener and
- * 1) preform out of main field bounds check
- * 2) make changes to the node
- * (this class will not change anything in node coordinates)
- *
- * There is defaultListener and it works only with Canvas nad Rectangle
- */
-
-public class DragResizeMod {
+public class ResizeMod {
 
     public interface OnDragResizeEventListener {
 
@@ -29,14 +18,7 @@ public class DragResizeMod {
 
         @Override
         public void onResize(Node node, double x, double y, double h, double w) {
-            /*
-            // TODO find generic way to get parent width and height of any node
-            // can perform out of bounds check here if you know your parent size
-            if (w > width - x) w = width - x;
-            if (h > height - y) h = height - y;
-            if (x < 0) x = 0;
-            if (y < 0) y = 0;
-            */
+
             setNodeSize(node, x, y, h, w);
         }
 
@@ -44,11 +26,7 @@ public class DragResizeMod {
 
             node.setLayoutX(x);
             node.setLayoutY(y);
-            // TODO find generic way to set width and height of any node
-            // here we cant set height and width to node directly.
-            // or i just cant find how to do it,
-            // so you have to wright resize code anyway for your Nodes...
-            //something like this
+
             if (node instanceof StackPane){
                 ((StackPane) node).setPrefWidth(w);
                 ((StackPane) node).setPrefHeight(h);
@@ -88,7 +66,7 @@ public class DragResizeMod {
     private static final double MIN_H = 20;
 
     //CONSTRACTOR
-    private DragResizeMod(Node node, OnDragResizeEventListener listener) {
+    private ResizeMod(Node node, OnDragResizeEventListener listener) {
         this.node = node;
         if (listener != null)
             this.listener = listener;
@@ -99,7 +77,7 @@ public class DragResizeMod {
     }
 
     public static void makeResizable(Node node, OnDragResizeEventListener listener) {
-        final DragResizeMod resizer = new DragResizeMod(node, listener);
+        final ResizeMod resizer = new ResizeMod(node, listener);
 
         node.setOnMousePressed(e -> resizer.mousePressed(e) );
 
