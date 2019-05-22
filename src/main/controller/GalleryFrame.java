@@ -1,22 +1,23 @@
 package main.controller;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.scene.*;
+import javafx.stage.*;
 
 import java.io.IOException;
 
 public class GalleryFrame extends Stage {
 
+    private FXMLLoader loader;
+    private Parent root;
     private Scene scene;
 
     public GalleryFrame() {
         try {
 
-            Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/GalleryFrame.fxml"));
-            scene = new Scene(root);
+            loader = new FXMLLoader(getClass().getResource("/resources/fxml/GalleryFrame.fxml"));
+            root = loader.load();
+            scene = new Scene(root, 500, 500);
 
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -24,16 +25,11 @@ public class GalleryFrame extends Stage {
 
         this.initStyle(StageStyle.UNDECORATED);
         this.setScene(scene);
-        this.setResizable(false);
+        this.setMaximized(true);
         this.show();
 
-        this.setOnCloseRequest(event -> {
-            Main.client.sendMessage("exit");
-            System.exit(0);
-        });
-
+        this.setOnCloseRequest(event -> ((GalleryFrameController) loader.getController()).close());
 
     }
-
 }
 
