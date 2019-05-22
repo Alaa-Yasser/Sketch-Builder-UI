@@ -1,5 +1,6 @@
 .menu .label, .menu-item .label {
     -fx-text-fill: white;
+    -fx-font-family: serif;
     -fx-font-weight: bold;
 }
 
@@ -13,3 +14,28 @@
     -fx-background-radius: 0 6 6 6, 0 5 5 5, 0 4 4 4;
     -fx-padding: 4 1 8 1;
 }
+
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color :transparent;
+    -fx-border-color :transparent;
+    -fx-background-radius : 0.0em;
+    -fx-border-radius :2.0em;
+}
+
+.scroll-bar:horizontal .thumb,
+ .scroll-bar:vertical .thumb {
+     -fx-background-color : #333333;
+     -fx-background-insets : 2.0, 0.0, 0.0;
+     -fx-background-radius : 2.0em;
+ }
+
+.scroll-bar:horizontal .thumb:hover,
+ .scroll-bar:vertical .thumb:hover {
+     -fx-background-color : derive(#4D4C4F,10.0%);
+     -fx-background-insets : 2.0, 0.0, 0.0;
+     -fx-background-radius : 2.0em;
