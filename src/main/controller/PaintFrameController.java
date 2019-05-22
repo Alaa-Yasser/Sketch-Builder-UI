@@ -1,28 +1,41 @@
 package main.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.MenuItem;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.input.MouseButton;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import org.kordamp.ikonli.javafx.FontIcon;
+
 import main.Operations.ClearOperation;
 import main.Operations.CloseOperation;
 import main.Operations.OpenOperation;
 import main.Operations.SaveOperation;
+
 import main.Tools.Brush;
 import main.Tools.Erase;
-import org.kordamp.ikonli.javafx.FontIcon;
 
-import java.io.FileNotFoundException;
+import java.io.*;
 
 public class PaintFrameController {
 
     @FXML
     BorderPane mainLayout;
     @FXML
-    BorderPane titleBar;
+    Pane topBorder;
+    @FXML
+    Pane bottomBorder;
+    @FXML
+    Pane rightBorder;
+    @FXML
+    Pane leftBorder;
+    @FXML
+    HBox titleBar;
     @FXML
     FontIcon closeIcon;
+    @FXML
+    FontIcon maximizeIcon;
     @FXML
     FontIcon minusIcon;
     @FXML
@@ -41,43 +54,53 @@ public class PaintFrameController {
     StackPane stackPane;
     @FXML
     DrawCanvas drawCanvas;
+    @FXML
+    StackPane canvasPane;
 
     private double xOffset;
     private double yOffset;
 
+    private Stage stage;
+
     public void initialize() {
 
-        drawCanvas.widthProperty().bind(stackPane.widthProperty());
-        drawCanvas.heightProperty().bind(stackPane.heightProperty());
+        canvasPane.setMinSize(300, 300);
+        ResizeMod.makeResizable(canvasPane, null);
+
+        canvasPane.widthProperty().addListener(evn -> {drawCanvas.setWidth(canvasPane.getWidth()-10);});
+        canvasPane.heightProperty().addListener(evn->{drawCanvas.setHeight(canvasPane.getHeight() - 10);});
 
         titleBar.setOnMousePressed(e -> {
             xOffset = e.getSceneX();
             yOffset = e.getSceneY();
         });
 
-        titleBar.setOnMouseDragged(e -> {
-            (titleBar.getScene().getWindow()).setX(e.getScreenX() - xOffset);
-            (titleBar.getScene().getWindow()).setY(e.getScreenY() - yOffset);
+        titleBar.setOnMouseDragged(event -> {
+            Stage stage = ((Stage)titleBar.getScene().getWindow());
+
+            if(stage.isMaximized())
+                stage.setMaximized(false);
+
+            stage.setX(event.getScreenX() - xOffset);
+            stage.setY(event.getScreenY() - yOffset);
+        });
+
+        titleBar.setOnMouseClicked(event -> {
+            if (event.getButton().equals(MouseButton.PRIMARY)) {
+                if (event.getClickCount() == 2)
+                    maximizeWindow();
+            }
         });
 
 
-        closeIcon.setOnMousePressed(event -> {
-            Main.client.sendMessage("exit");
-            CloseOperation close = new CloseOperation();
-            close.setStage((Stage) (mainLayout.getScene().getWindow()));
-            close.setCanvas(drawCanvas);
-            close.operate();
-        });
+        closeIcon.setOnMousePressed(event -> close() );
+
+        maximizeIcon.setOnMousePressed(event -> maximizeWindow());
 
         minusIcon.setOnMousePressed(event -> ((Stage) (minusIcon.getScene().getWindow())).setIconified(true));
 
 
-        openItem.setOnAction(event -> {
-            OpenOperation open = new OpenOperation();
-            open.setStage((Stage) (mainLayout.getScene().getWindow()));
-            open.setCanvas(drawCanvas);
-            open.operate();
-        });
+        openItem.setOnAction(event -> openImage());
 
         saveItem.setOnAction(event -> {
             SaveOperation save = new SaveOperation();
@@ -88,29 +111,32 @@ public class PaintFrameController {
 
         clearItem.setOnAction(event -> {
             ClearOperation clear = new ClearOperation();
-            clear.setLayout(stackPane);
+            clear.setLayout(canvasPane);
             clear.setCanvas(drawCanvas);
             clear.operate();
         });
 
         closeItem.setOnAction(event -> {
-            Main.client.sendMessage("exit");
-            CloseOperation close = new CloseOperation();
-            close.setStage((Stage) (mainLayout.getScene().getWindow()));
-            close.setCanvas(drawCanvas);
-            close.operate();
+            close();
         });
 
-        brushItem.setOnAction(event -> {
-            Brush brush = new Brush();
-            brush.setCanvas(drawCanvas);
-            try {
-                brush.setCursor();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-            brush.draw();
-        });
+        brushItem.setOnAction(event -> setBrushItem() );
+
+//        lineItem.setOnAction(event -> {
+//            Line line = new Line();
+//            line.setLayout(canvasPane);
+//            line.setCanvas(drawCanvas);
+//            line.setCursor();
+//            line.draw();
+//        });
+//
+//        rectItem.setOnAction(event -> {
+//            RectangleShape rect = new RectangleShape();
+//            rect.setLayout(canvasPane);
+//            rect.setCanvas(drawCanvas);
+//            rect.setCursor();
+//            rect.draw();
+//        });
 
         eraseItem.setOnAction(event -> {
             Erase erase = new Erase();
@@ -122,5 +148,65 @@ public class PaintFrameController {
             }
             erase.draw();
         });
+        setBrushItem();
+    }
+    private void setBrushItem(){
+        Brush brush = new Brush();
+        brush.setCanvas(drawCanvas);
+        try {
+            brush.setCursor();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        brush.draw();
+    }
+
+    public void close () {
+        CloseOperation close = new CloseOperation();
+        close.setStage((Stage) (mainLayout.getScene().getWindow()));
+        close.setCanvas(drawCanvas);
+        close.operate();
+        stage.show();
+    }
+
+    public void openImage () {
+        OpenOperation open = new OpenOperation();
+        open.setStage((Stage) (mainLayout.getScene().getWindow()), this);
+        open.setCanvas(drawCanvas);
+        open.operate();
+    }
+
+    public void setImage (File imageFile) {
+        OpenOperation open = new OpenOperation();
+        open.setStage((Stage) (mainLayout.getScene().getWindow()), this);
+        open.setCanvas(drawCanvas);
+        open.setImage(imageFile);
+    }
+    public void setDrawCanvasSize(double w, double h){
+        this.canvasPane.setPrefWidth(w);
+        this.canvasPane.setPrefHeight(h);
+        this.drawCanvas.setWidth(w-10);
+        this.drawCanvas.setHeight(h-10);
+    }
+
+    private void maximizeWindow () {
+        Stage stage = ((Stage)titleBar.getScene().getWindow());
+        if (stage.isMaximized()){
+            topBorder.setCursor(Cursor.V_RESIZE);
+            bottomBorder.setCursor(Cursor.V_RESIZE);
+            leftBorder.setCursor(Cursor.H_RESIZE);
+            rightBorder.setCursor(Cursor.H_RESIZE);
+            stage.setMaximized(false);
+        }else {
+            topBorder.setCursor(Cursor.DEFAULT);
+            bottomBorder.setCursor(Cursor.DEFAULT);
+            leftBorder.setCursor(Cursor.DEFAULT);
+            rightBorder.setCursor(Cursor.DEFAULT);
+            stage.setMaximized(true);
+        }
+    }
+
+    public void setGalleryFrame (Stage stage) {
+        this.stage = stage;
     }
 }
