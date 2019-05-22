@@ -5,6 +5,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.*;
 import main.controller.DrawCanvas;
+import main.controller.PaintFrameController;
 
 import java.io.File;
 import java.util.Optional;
@@ -13,15 +14,17 @@ public class OpenOperation extends Operation {
 
     private GraphicsContext graphics;
     private Stage stage;
+    private PaintFrameController paintController;
 
-    public  void setStage (Stage stage){
+    public  void setStage (Stage stage, PaintFrameController paintController){
         this.stage = stage;
+        this.paintController = paintController;
     }
+
 
     @Override
     public void setCanvas(DrawCanvas canvas) {
         this.canvas = canvas;
-        graphics = this.canvas.getGraphicsContext2D();
     }
 
     @Override
@@ -57,9 +60,15 @@ public class OpenOperation extends Operation {
     private void open (){
         final FileChooser f = new FileChooser();
         File file = f.showOpenDialog(stage);
-        if (file != null)
+        setImage(file);
+    }
+
+    public void setImage (File imageFile) {
+        if (imageFile != null)
         {
-            Image img = new Image(file.toURI().toString());
+            Image img = new Image(imageFile.toURI().toString() );
+            paintController.setDrawCanvasSize(img.getWidth(), img.getHeight());
+            graphics = this.canvas.getGraphicsContext2D();
             graphics.drawImage(img, 0, 0);
         }
     }
