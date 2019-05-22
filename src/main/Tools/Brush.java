@@ -32,6 +32,9 @@ public class Brush extends Tool {
             graphics.stroke();
         });
         canvas.setOnMouseReleased(e -> canvas.setIsEdited(true));
+        canvas.setOnMouseMoved(null);
+
+
     }
 
     @Override
