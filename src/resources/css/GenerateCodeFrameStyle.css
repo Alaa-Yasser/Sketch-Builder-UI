@@ -39,6 +39,7 @@
 
 .combo-box .list-cell {
     -fx-text-fill: white;
+    -fx-font-family: serif;
     -fx-font-weight: bold;
     -fx-background-color: transparent;
     -fx-background-radius: 30px;
