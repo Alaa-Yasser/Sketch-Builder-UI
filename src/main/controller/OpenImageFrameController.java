@@ -47,20 +47,25 @@ public class OpenImageFrameController {
     private Image openedImage;
     private File imageFile;
 
+    private boolean isDragging = false;
+
     public void initialize() {
 
-        titleBar.setOnMousePressed(e -> {
-            xOffset = e.getSceneX();
-            yOffset = e.getSceneY();
+        titleBar.setOnMousePressed(event -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+            isDragging = true;
         });
 
         titleBar.setOnMouseDragged(event -> {
             Stage stage = ((Stage)titleBar.getScene().getWindow());
 
-            Main.maximizeWindow(stage);
+            if(isDragging)
+                Main.maximizeWindow(stage);
 
             stage.setX(event.getScreenX() - xOffset);
             stage.setY(event.getScreenY() - yOffset);
+            isDragging = false;
         });
 
         titleBar.setOnMouseClicked(event -> {

@@ -62,6 +62,8 @@ public class PaintFrameController {
 
     private Stage stage;
 
+    private boolean isDraging = false;
+
     public void initialize() {
 
         canvasPane.setMinSize(300, 300);
@@ -70,18 +72,21 @@ public class PaintFrameController {
         canvasPane.widthProperty().addListener(evn -> {drawCanvas.setWidth(canvasPane.getWidth()-10);});
         canvasPane.heightProperty().addListener(evn->{drawCanvas.setHeight(canvasPane.getHeight() - 10);});
 
-        titleBar.setOnMousePressed(e -> {
-            xOffset = e.getSceneX();
-            yOffset = e.getSceneY();
+        titleBar.setOnMousePressed(event -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+            isDraging = true;
         });
 
         titleBar.setOnMouseDragged(event -> {
             Stage stage = ((Stage)titleBar.getScene().getWindow());
 
-            Main.maximizeWindow(stage);
+            if(isDraging)
+                Main.maximizeWindow(stage);
 
             stage.setX(event.getScreenX() - xOffset);
             stage.setY(event.getScreenY() - yOffset);
+            isDraging = false;
         });
 
         titleBar.setOnMouseClicked(event -> {

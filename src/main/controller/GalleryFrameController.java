@@ -70,7 +70,7 @@ public class GalleryFrameController {
     private ArrayList<GalleryImage> selectedItems;
     private ArrayList<GalleryImage> galleryImages;
     private ArrayList<File> loadedFiles;
-
+    private boolean isDragging = false;
     public void initialize() {
         selectedItems = new ArrayList<>();
         galleryImages = new ArrayList<>();
@@ -79,15 +79,18 @@ public class GalleryFrameController {
         titleBar.setOnMousePressed(event -> {
             xOffset = event.getSceneX();
             yOffset = event.getSceneY();
+            isDragging = true;
         });
 
         titleBar.setOnMouseDragged(event -> {
             Stage stage = ((Stage)titleBar.getScene().getWindow());
 
-            Main.maximizeWindow(stage);
+            if(isDragging)
+                Main.maximizeWindow(stage);
 
             stage.setX(event.getScreenX() - xOffset);
             stage.setY(event.getScreenY() - yOffset);
+            isDragging = false;
         });
 
         titleBar.setOnMouseClicked(event -> {
