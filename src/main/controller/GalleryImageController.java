@@ -26,9 +26,9 @@ public class GalleryImageController {
     public void setImageView (File imageFile) {
         try {
             this.imageFile = imageFile;
-            final Image image = new Image(new FileInputStream(imageFile), 136, 0, true, true);
-            this.imageView.setImage(image);
-            imageView.setImage(image);
+            final Image IMAGE = new Image(new FileInputStream(imageFile), 136, 0, true, true);
+            this.imageView.setImage(IMAGE);
+            imageView.setImage(IMAGE);
             imageView.setFitWidth(136);
             imageView.setFitHeight(145);
             Rectangle clip = new Rectangle();

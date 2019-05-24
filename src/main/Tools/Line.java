@@ -1,14 +1,9 @@
 package main.Tools;
 
 import javafx.scene.Cursor;
-import javafx.scene.ImageCursor;
 import javafx.scene.canvas.*;
-import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import main.controller.DrawCanvas;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
 public class Line extends Shape {
     private GraphicsContext graphics;
@@ -34,8 +29,8 @@ public class Line extends Shape {
         canvas.setOnMouseDragged(e -> {
             stackPane.getChildren().remove(0);
             final DrawCanvas tempCanvas = new DrawCanvas();
-            tempCanvas.widthProperty().bind(stackPane.widthProperty());
-            tempCanvas.heightProperty().bind(stackPane.heightProperty());
+            tempCanvas.widthProperty().bind(stackPane.widthProperty().subtract(10));
+            tempCanvas.heightProperty().bind(stackPane.heightProperty().subtract(10));
             final GraphicsContext gc = tempCanvas.getGraphicsContext2D();
             this.endX = e.getX();
             this.endY = e.getY();

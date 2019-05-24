@@ -53,6 +53,10 @@ public class GalleryFrameController {
     @FXML
     MenuItem deleteAllItem;
     @FXML
+    MenuItem helpItem;
+    @FXML
+    MenuItem aboutItem;
+    @FXML
     TilePane tilePane;
     @FXML
     Button addButton;
@@ -156,6 +160,14 @@ public class GalleryFrameController {
             tilePane.getChildren().remove(1, galleryImages.size() + 1);
             galleryImages.clear();
             selectedItems.clear();
+        });
+
+        helpItem.setOnAction(event -> {
+
+        });
+
+        aboutItem.setOnAction(event -> {
+
         });
 
 

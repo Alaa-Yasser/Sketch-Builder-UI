@@ -28,7 +28,7 @@ public class CloseOperation extends Operation {
         else
         {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setContentText("The current image is not saved. Save it?");
+                alert.setHeaderText("The current image is not saved. Save it?");
                 alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.YES){

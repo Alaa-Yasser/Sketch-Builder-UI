@@ -1,15 +1,10 @@
 package main.Tools;
 
 import javafx.scene.Cursor;
-import javafx.scene.ImageCursor;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.*;
 import main.controller.DrawCanvas;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
 public class RectangleShape extends Shape {
 
@@ -44,8 +39,8 @@ public class RectangleShape extends Shape {
             stackPane.getChildren().remove(0);
             final DrawCanvas tempCanvas = new DrawCanvas();
             final GraphicsContext gc = tempCanvas.getGraphicsContext2D();
-            tempCanvas.widthProperty().bind(stackPane.widthProperty());
-            tempCanvas.heightProperty().bind(stackPane.heightProperty());
+            tempCanvas.widthProperty().bind(stackPane.widthProperty().subtract(10));
+            tempCanvas.heightProperty().bind(stackPane.heightProperty().subtract(10));
 
             rectChange.setWidth(Math.abs((e.getX() - rectChange.getX())));
             rectChange.setHeight(Math.abs((e.getY() - rectChange.getY())));

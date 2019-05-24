@@ -29,7 +29,7 @@ public class PaintFrame extends Stage {
             e.printStackTrace();
         }
 
-        scene = new Scene(root, 500, 500);
+        scene = new Scene(root, 700, 700);
 
         this.initStyle(StageStyle.UNDECORATED);
         this.setScene(scene);

@@ -77,8 +77,6 @@
                         <Menu mnemonicParsing="false" text="Tools">
                             <items>
                                 <MenuItem fx:id="brushItem" mnemonicParsing="false" text="Brush" />
-                                <MenuItem fx:id="lineItem" mnemonicParsing="false" text="Line" />
-                                <MenuItem fx:id="rectItem" mnemonicParsing="false" text="Rectangle" />
                                 <MenuItem fx:id="eraseItem" mnemonicParsing="false" text="Eraser" />
                             </items>
                         </Menu>

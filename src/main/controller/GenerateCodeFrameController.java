@@ -8,6 +8,7 @@ import main.Operations.SubmitOperation;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 
 public class GenerateCodeFrameController {
@@ -35,6 +36,10 @@ public class GenerateCodeFrameController {
 
     private double xOffset;
     private double yOffset;
+    private final String CSHARP_LANGUAGE = "C#";
+    private final String HTML_LANGUAGE = "HTML";
+    private final String ANDROID_LANGUAGE = "Android";
+    private HashMap<String , String> languageMap;
 
 
     public void initialize() {
@@ -60,9 +65,9 @@ public class GenerateCodeFrameController {
         browseInputPathIcon.setOnMousePressed(event -> {
             FileChooser.ExtensionFilter imageFilter
                     = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png", ".jpeg");
-            final FileChooser f = new FileChooser();
-            f.getExtensionFilters().add(imageFilter);
-            List<File> files = f.showOpenMultipleDialog(browseInputPathIcon.getScene().getWindow());
+            final FileChooser FILE_CHOOSER = new FileChooser();
+            FILE_CHOOSER.getExtensionFilters().add(imageFilter);
+            List<File> files = FILE_CHOOSER.showOpenMultipleDialog(browseInputPathIcon.getScene().getWindow());
 
             if (files.size() != 0) {
                setImagePath(files);
@@ -70,26 +75,42 @@ public class GenerateCodeFrameController {
         });
 
         browseOutputPathIcon.setOnMousePressed(event -> {
-            final DirectoryChooser directoryChooser = new DirectoryChooser();
-            File selectedDirectory = directoryChooser.showDialog(browseOutputPathIcon.getScene().getWindow());
+            final DirectoryChooser DIRECTORY_CHOOSER = new DirectoryChooser();
+            File selectedDirectory = DIRECTORY_CHOOSER.showDialog(browseOutputPathIcon.getScene().getWindow());
 
             if(selectedDirectory != null) {
                 outputPathText.setText(selectedDirectory.getAbsolutePath());
             }
         });
 
-        languageComboBox.getItems().addAll("Android", "HTML", "C#");
-//        boolean s = languageComboBox.getValue().equals("HTML");
+        languageComboBox.getItems().addAll(ANDROID_LANGUAGE, HTML_LANGUAGE, CSHARP_LANGUAGE);
+        this.languageMap = new HashMap<>();
+        this.languageMap.put(ANDROID_LANGUAGE, "--android");
+        this.languageMap.put(HTML_LANGUAGE, "--html");
+        this.languageMap.put(CSHARP_LANGUAGE, "--csharp");
 
         submitButton.setOnAction(event ->{
-            String flag;
-            if(imageProcessingCheckBox.isSelected())
-                flag = "-d";
-            else
-                flag = "-p";
-            new SubmitOperation("compile "+ flag + " " + this.inputPathText.getText(),
-                    getFileName(this.inputPathText.getText()),
-                    this.outputPathText.getText()).operate();
+
+            if (inputPathText.getText().equals("Image Path") || outputPathText.getText().equals("Project Path")) {
+                Alert error = new Alert(Alert.AlertType.ERROR);
+                error.setHeaderText("Input Path and Project Path are required");
+                error.showAndWait();
+            }else if (languageComboBox.getValue() == null) {
+                Alert error = new Alert(Alert.AlertType.ERROR);
+                error.setHeaderText("Select Your Language");
+                error.showAndWait();
+            }else {
+                Main.loadFrame.showStage();
+                String flag;
+                if (imageProcessingCheckBox.isSelected())
+                    flag = "-d";
+                else
+                    flag = "-p";
+                new SubmitOperation("compile " + flag + " " + this.inputPathText.getText(),
+                        getFileName(this.inputPathText.getText()),
+                        this.outputPathText.getText(),
+                        this.languageMap.get(this.languageComboBox.getValue())).operate();
+            }
         });
 
         inputPathText.setFocusTraversable(false);

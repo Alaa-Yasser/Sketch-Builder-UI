@@ -22,7 +22,7 @@
                <children>
                   <HBox fx:id="titleBar" prefHeight="25.0" prefWidth="545.0">
                      <children>
-                              <Text fx:id="title" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Code Generator" wrappingWidth="152.0205078125">
+                              <Text fx:id="title" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Converter" wrappingWidth="152.0205078125">
                                   <font>
                                       <Font name="Serif Bold" size="20.0" />
                                   </font>

@@ -9,12 +9,12 @@ import javafx.scene.shape.Rectangle;
 
 public class ResizeMod {
 
-    public interface OnDragResizeEventListener {
+    public interface OnResizeEventListener {
 
         void onResize(Node node, double x, double y, double h, double w);
     }
 
-    private static final OnDragResizeEventListener defaultListener = new OnDragResizeEventListener() {
+    private static final OnResizeEventListener defaultListener = new OnResizeEventListener() {
 
         @Override
         public void onResize(Node node, double x, double y, double h, double w) {
@@ -59,24 +59,20 @@ public class ResizeMod {
     private S state = S.DEFAULT;
 
     private Node node;
-    private OnDragResizeEventListener listener = defaultListener;
+    private OnResizeEventListener listener = defaultListener;
 
     private static final int MARGIN = 8;
     private static final double MIN_W = 30;
     private static final double MIN_H = 20;
 
     //CONSTRACTOR
-    private ResizeMod(Node node, OnDragResizeEventListener listener) {
+    private ResizeMod(Node node, OnResizeEventListener listener) {
         this.node = node;
         if (listener != null)
             this.listener = listener;
     }
 
-    public static void makeResizable(Node node) {
-        makeResizable(node, null);
-    }
-
-    public static void makeResizable(Node node, OnDragResizeEventListener listener) {
+    public static void makeResizable(Node node, OnResizeEventListener listener) {
         final ResizeMod resizer = new ResizeMod(node, listener);
 
         node.setOnMousePressed(e -> resizer.mousePressed(e) );
