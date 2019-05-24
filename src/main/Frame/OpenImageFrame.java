@@ -1,8 +1,9 @@
-package main.controller;
+package main.Frame;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.stage.*;
+import main.controller.OpenImageFrameController;
 
 import java.io.*;
 

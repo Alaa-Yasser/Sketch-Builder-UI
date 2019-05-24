@@ -2,9 +2,10 @@ package main.controller;
 
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Cursor;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import main.Frame.GalleryFrame;
+import main.Frame.LoadFrame;
 
 public class Main extends Application {
     public static Client client;

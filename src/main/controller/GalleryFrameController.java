@@ -2,11 +2,14 @@ package main.controller;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import javafx.stage.*;
+import main.Frame.GalleryImage;
+import main.Frame.GenerateCodeFrame;
+import main.Frame.OpenImageFrame;
+import main.Frame.PaintFrame;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.*;

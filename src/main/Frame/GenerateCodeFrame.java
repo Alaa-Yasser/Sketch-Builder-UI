@@ -1,9 +1,10 @@
-package main.controller;
+package main.Frame;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.*;
+import main.controller.GenerateCodeFrameController;
 
 import java.io.File;
 import java.io.IOException;

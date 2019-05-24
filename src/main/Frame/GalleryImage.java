@@ -1,7 +1,8 @@
-package main.controller;
+package main.Frame;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.StackPane;
+import main.controller.GalleryImageController;
 
 import java.io.File;
 import java.io.IOException;

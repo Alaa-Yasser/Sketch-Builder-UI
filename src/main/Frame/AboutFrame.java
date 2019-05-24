@@ -1,4 +1,4 @@
-package main.controller;
+package main.Frame;
 
 public class AboutFrame {
 }
