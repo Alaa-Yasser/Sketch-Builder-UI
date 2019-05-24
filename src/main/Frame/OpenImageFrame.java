@@ -37,7 +37,6 @@ public class OpenImageFrame extends Stage {
         this.initModality(Modality.APPLICATION_MODAL);
         this.initStyle(StageStyle.UNDECORATED);
         this.setScene(scene);
-        //this.setMaximized(true);
         this.show();
 
 

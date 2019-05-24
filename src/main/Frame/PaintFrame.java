@@ -3,6 +3,7 @@ package main.Frame;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.stage.*;
+import main.controller.Main;
 import main.controller.PaintFrameController;
 
 import java.io.*;
@@ -32,9 +33,10 @@ public class PaintFrame extends Stage {
 
         scene = new Scene(root, 700, 700);
 
+        Main.maximizeWindow(this);
+
         this.initStyle(StageStyle.UNDECORATED);
         this.setScene(scene);
-        this.setMaximized(true);
         this.setOnCloseRequest(event -> ((PaintFrameController) loader.getController()).close());
         this.show();
     }

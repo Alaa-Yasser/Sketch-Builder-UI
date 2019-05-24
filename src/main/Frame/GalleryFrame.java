@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.stage.*;
 import main.controller.GalleryFrameController;
+import main.controller.Main;
 
 import java.io.IOException;
 
@@ -24,9 +25,9 @@ public class GalleryFrame extends Stage {
             ex.printStackTrace();
         }
 
+        Main.maximizeWindow(this);
         this.initStyle(StageStyle.UNDECORATED);
         this.setScene(scene);
-        this.setMaximized(true);
         this.show();
 
         this.setOnCloseRequest(event -> ((GalleryFrameController) loader.getController()).close());

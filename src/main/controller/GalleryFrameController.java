@@ -84,8 +84,7 @@ public class GalleryFrameController {
         titleBar.setOnMouseDragged(event -> {
             Stage stage = ((Stage)titleBar.getScene().getWindow());
 
-            if(stage.isMaximized())
-                stage.setMaximized(false);
+            Main.maximizeWindow(stage);
 
             stage.setX(event.getScreenX() - xOffset);
             stage.setY(event.getScreenY() - yOffset);
