@@ -89,16 +89,20 @@ public class GalleryFrameController {
         });
 
         titleBar.setOnMouseClicked(event -> {
+            Stage stage = (Stage) titleBar.getScene().getWindow();
             if (event.getButton().equals(MouseButton.PRIMARY)) {
                 if (event.getClickCount() == 2)
-                    maximizeWindow();
+                    Main.maximizeWindow(stage);
             }
         });
 
 
         closeIcon.setOnMousePressed(event -> close() );
 
-        maximizeIcon.setOnMousePressed(event -> maximizeWindow());
+        maximizeIcon.setOnMousePressed(event -> {
+            Stage stage = (Stage) maximizeIcon.getScene().getWindow();
+            Main.maximizeWindow(stage);
+        });
 
         minusIcon.setOnMousePressed(event -> ((Stage)(minusIcon.getScene().getWindow())).setIconified(true));
 
@@ -313,22 +317,6 @@ public class GalleryFrameController {
 
     }
 
-    private void maximizeWindow () {
-        Stage stage = ((Stage)titleBar.getScene().getWindow());
-        if (stage.isMaximized()){
-            topBorder.setCursor(Cursor.V_RESIZE);
-            bottomBorder.setCursor(Cursor.V_RESIZE);
-            leftBorder.setCursor(Cursor.H_RESIZE);
-            rightBorder.setCursor(Cursor.H_RESIZE);
-            stage.setMaximized(false);
-        }else {
-            topBorder.setCursor(Cursor.DEFAULT);
-            bottomBorder.setCursor(Cursor.DEFAULT);
-            leftBorder.setCursor(Cursor.DEFAULT);
-            rightBorder.setCursor(Cursor.DEFAULT);
-            stage.setMaximized(true);
-        }
-    }
 
     private void modifySelected () {
         for (int i=0; i< selectedItems.size(); ++i ){
