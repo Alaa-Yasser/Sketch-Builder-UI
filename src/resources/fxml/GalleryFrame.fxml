@@ -64,16 +64,17 @@
                 <Menu mnemonicParsing="false" text="File">
                   <items>
                         <MenuItem fx:id="openImageItem" mnemonicParsing="false" text="Open Image" />
-                        <MenuItem fx:id="drawImageItem" mnemonicParsing="false" text="Draw Image" />
-                        <MenuItem fx:id="convertItem" mnemonicParsing="false" text="Convert" />
+                        <MenuItem fx:id="paintItem" mnemonicParsing="false" text="Open Paint Brush" />
+                        <MenuItem fx:id="converterItem" mnemonicParsing="false" text="Open Converter" />
                     <MenuItem fx:id="closeItem" mnemonicParsing="false" text="Close" />
                   </items>
                 </Menu>
                 <Menu fx:id="toolsMenu" mnemonicParsing="false" text="Tools">
                   <items>
-                        <MenuItem fx:id="modifyItem" mnemonicParsing="false" text="Modify" />
+                        <MenuItem fx:id="modifySelectedItem" mnemonicParsing="false" text="Modify Selected" />
                         <MenuItem fx:id="convertSelectedItem" mnemonicParsing="false" text="Convert Selected" />
                         <MenuItem fx:id="selectAllItem" mnemonicParsing="false" text="Select All" />
+                      <MenuItem fx:id="deleteSelectedItem" mnemonicParsing="false" text="Delete Selected" />
                         <MenuItem fx:id="deleteAllItem" mnemonicParsing="false" text="Delete All" />
                   </items>
                 </Menu>

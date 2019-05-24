@@ -35,19 +35,21 @@ public class GalleryFrameController {
     @FXML
     MenuItem openImageItem;
     @FXML
-    MenuItem drawImageItem;
+    MenuItem paintItem;
     @FXML
-    MenuItem convertItem;
+    MenuItem converterItem;
     @FXML
     MenuItem closeItem;
     @FXML
     Menu toolsMenu;
     @FXML
-    MenuItem modifyItem;
+    MenuItem modifySelectedItem;
     @FXML
     MenuItem convertSelectedItem;
     @FXML
     MenuItem selectAllItem;
+    @FXML
+    MenuItem deleteSelectedItem;
     @FXML
     MenuItem deleteAllItem;
     @FXML
@@ -58,7 +60,7 @@ public class GalleryFrameController {
     private double xOffset;
     private double yOffset;
 
-    private ArrayList<File> selectedItems;
+    private ArrayList<GalleryImage> selectedItems;
     private ArrayList<GalleryImage> galleryImages;
     private ArrayList<File> loadedFiles;
 
@@ -66,6 +68,7 @@ public class GalleryFrameController {
         selectedItems = new ArrayList<>();
         galleryImages = new ArrayList<>();
         loadedFiles = new ArrayList<>();
+
         titleBar.setOnMousePressed(event -> {
             xOffset = event.getSceneX();
             yOffset = event.getSceneY();
@@ -98,7 +101,7 @@ public class GalleryFrameController {
 
         openImageItem.setOnAction(event -> addImageFunc());
 
-        drawImageItem.setOnAction(event -> {
+        paintItem.setOnAction(event -> {
             try {
                 new PaintFrame().setParentFrame((Stage)layout.getScene().getWindow());
                 (layout.getScene().getWindow()).hide();
@@ -107,29 +110,27 @@ public class GalleryFrameController {
         });
 
 
-        convertItem.setOnAction(event -> new GenerateCodeFrame());
+        converterItem.setOnAction(event -> new GenerateCodeFrame());
 
         closeItem.setOnAction(event -> close());
 
 
         toolsMenu.setOnShown(event -> {
             if (selectedItems.size() == 0){
-                modifyItem.setDisable(true);
+                modifySelectedItem.setDisable(true);
                 convertSelectedItem.setDisable(true);
+                deleteSelectedItem.setDisable(true);
             }
             else {
-                modifyItem.setDisable(false);
+                modifySelectedItem.setDisable(false);
                 convertSelectedItem.setDisable(false);
+                deleteSelectedItem.setDisable(false);
             }
         });
 
-        modifyItem.setOnAction(event -> {
-            for (int i=0; i< selectedItems.size(); ++i ){
-                PaintFrame paintFrame = new PaintFrame(selectedItems.get(i));
-            }
-        });
+        modifySelectedItem.setOnAction(event -> modifySelected());
 
-        convertSelectedItem.setOnAction(event -> new GenerateCodeFrame(selectedItems));
+        convertSelectedItem.setOnAction(event -> convertSelected());
 
         selectAllItem.setOnAction(event -> {
             if(selectedItems.size() == galleryImages.size()){
@@ -142,16 +143,19 @@ public class GalleryFrameController {
                 selectedItems.clear();
                 for(int i =0 ; i < galleryImages.size(); ++i){
                     galleryImages.get(i).selectImage();
-                    selectedItems.add(galleryImages.get(i).getImagefile());
+                    selectedItems.add(galleryImages.get(i));
                 }
 
                 selectAllItem.setText("UnSelect All");
             }
         });
 
+        deleteSelectedItem.setOnAction(event -> deleteSelected());
+
         deleteAllItem.setOnAction(event -> {
             tilePane.getChildren().remove(1, galleryImages.size() + 1);
             galleryImages.clear();
+            selectedItems.clear();
         });
 
 
@@ -176,8 +180,8 @@ public class GalleryFrameController {
 
     }
     private void addImageFunc(){
-        final FileChooser fileChooser = new FileChooser();
-        List<File> imageFileList = fileChooser.showOpenMultipleDialog(addButton.getScene().getWindow());
+        final FileChooser FILE_CHOOSER = new FileChooser();
+        List<File> imageFileList = FILE_CHOOSER.showOpenMultipleDialog(addButton.getScene().getWindow());
         fillImages(imageFileList);
 
     }
@@ -191,22 +195,22 @@ public class GalleryFrameController {
             }
         }
     }
-    private GalleryImage createImageView (final File imageFile) {
-        final GalleryImage galleryImage;
+    private GalleryImage createImageView (final File IMAGE_FILE) {
+        final GalleryImage GALLERY_IMAGE;
         try{
-            galleryImage =  new GalleryImage(imageFile);
+            GALLERY_IMAGE =  new GalleryImage(IMAGE_FILE);
 
-            initContextMenu(galleryImage);
+            initContextMenu(GALLERY_IMAGE);
 
-            galleryImage.getView().setOnMouseClicked(event -> {
+            GALLERY_IMAGE.getView().setOnMouseClicked(event -> {
 
                 if (event.getButton().equals(MouseButton.PRIMARY)) {
                     if (event.getClickCount() == 2){
-                        OpenImageFrame openImageFrame = new OpenImageFrame(imageFile);
+                        OpenImageFrame openImageFrame = new OpenImageFrame(IMAGE_FILE);
                     }
                 }
             });
-            return galleryImage;
+            return GALLERY_IMAGE;
         }catch (Exception ex){
             ex.printStackTrace();
             return null;
@@ -216,7 +220,6 @@ public class GalleryFrameController {
     private void initContextMenu (GalleryImage node) {
         ContextMenu contextMenu = new ContextMenu();
         MenuItem  item1 = new MenuItem("Select");
-
         MenuItem item2 = new MenuItem("Modify");
         MenuItem  item3 = new MenuItem("Convert");
         MenuItem item4 = new MenuItem("Delete");
@@ -226,24 +229,37 @@ public class GalleryFrameController {
         item1.setOnAction(event ->{
             if (node.isSelected()) {
                 node.deselectImage();
-                selectedItems.remove(node.getImagefile());
+                selectedItems.remove(node);
             }else {
                 node.selectImage();
-                selectedItems.add(node.getImagefile());
+                selectedItems.add(node);
             }
         });
 
         item2.setOnAction(event -> {
-            PaintFrame paintFrame = new PaintFrame(node.getImagefile());
+            if (selectedItems.size() == 0) {
+                new PaintFrame(node.getImagefile());
+            } else {
+                modifySelected();
+            }
+
         } );
 
         item3.setOnAction(event -> {
-            GenerateCodeFrame generateCodeFrame = new GenerateCodeFrame(node.getImagefile());
+            if (selectedItems.size() == 0) {
+                new GenerateCodeFrame(node.getImagefile());
+            } else
+                convertSelected();
+
         });
 
         item4.setOnAction(event -> {
-            tilePane.getChildren().remove(node.getView());
-            galleryImages.remove(node);
+            if (selectedItems.size() == 0) {
+                tilePane.getChildren().remove(node.getView());
+                galleryImages.remove(node);
+                selectedItems.remove(node);
+            } else
+                deleteSelected();
         });
 
         node.getView().setOnContextMenuRequested(event ->{
@@ -251,6 +267,16 @@ public class GalleryFrameController {
                 item1.setText("Select");
             else
                 item1.setText("UnSelect");
+            if(selectedItems.size() >0) {
+                item2.setText("Modify Selected");
+                item3.setText("Convert Selected");
+                item4.setText("Delete Selected");
+            }
+            else{
+                item2.setText("Modify");
+                item3.setText("Convert");
+                item4.setText("Delete");
+            }
             contextMenu.show(node.getView(), event.getScreenX(), event.getScreenY());
         });
     }
@@ -289,6 +315,28 @@ public class GalleryFrameController {
             leftBorder.setCursor(Cursor.DEFAULT);
             rightBorder.setCursor(Cursor.DEFAULT);
             stage.setMaximized(true);
+        }
+    }
+
+    private void modifySelected () {
+        for (int i=0; i< selectedItems.size(); ++i ){
+            PaintFrame paintFrame = new PaintFrame(selectedItems.get(i).getImagefile());
+        }
+    }
+
+    private void convertSelected () {
+        ArrayList<File> selectedFiles = new ArrayList<>();
+        for (int i = 0; i < selectedItems.size(); ++i) {
+            selectedFiles.add(selectedItems.get(i).getImagefile());
+        }
+        new GenerateCodeFrame(selectedFiles);
+    }
+
+    private void deleteSelected () {
+        for (int i = 0; i < selectedItems.size();) {
+            tilePane.getChildren().remove(selectedItems.get(i).getView());
+            galleryImages.remove(selectedItems.get(i));
+            selectedItems.remove(selectedItems.get(i));
         }
     }
 
