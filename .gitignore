@@ -2,3 +2,4 @@
 out/*
 images/*
 *.iml
+.log
