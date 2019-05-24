@@ -27,7 +27,13 @@ public class SubmitOperation extends Operation implements Client.ServerResponse 
 
     @Override
     public void operate() {
-        ((Runnable)()->Main.client.sendMessage(request)).run();
+
+        Thread x = new Thread(((Runnable)()->{
+            Main.client.sendMessage(request);
+
+        }));
+        x.start();
+        
     }
 
     @Override
@@ -39,10 +45,10 @@ public class SubmitOperation extends Operation implements Client.ServerResponse 
                 this.request = "generate " + this.language + " json/"+ inputName +".json " + this.outputPath;
             }else if(message.contains("generate")){
                 System.out.println("Sketch converted to code");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("Sketch Convert to Code Successfully");
                 Main.loadFrame.hideStage();
-                Alert error = new Alert(Alert.AlertType.INFORMATION);
-                error.setHeaderText("Sketch Convert to Code Successfully");
-                error.showAndWait();
+                alert.showAndWait();
                 return;
             }else{
                 return;

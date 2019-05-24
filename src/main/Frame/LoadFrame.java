@@ -28,7 +28,8 @@ public class LoadFrame extends Stage {
     }
 
     public void showStage () {
-        this.show();
+        if(!this.isShowing())
+            this.showAndWait();
     }
 
     public void hideStage () {

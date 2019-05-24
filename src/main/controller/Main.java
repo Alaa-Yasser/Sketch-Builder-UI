@@ -7,6 +7,10 @@ import javafx.stage.Stage;
 import main.Frame.GalleryFrame;
 import main.Frame.LoadFrame;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+
 public class Main extends Application {
     public static Client client;
     public static LoadFrame loadFrame;
@@ -19,7 +23,16 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        client = new Client("127.0.0.1", 1996);
+        File file = new File(".config/port.config");
+        int port = 1996;
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            port = Integer.parseInt(br.readLine());
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+        client = new Client("127.0.0.1", port);
 
 //        client.connect();
         launch(args);
