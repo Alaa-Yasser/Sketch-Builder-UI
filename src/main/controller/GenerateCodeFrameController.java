@@ -18,8 +18,6 @@ public class GenerateCodeFrameController {
     @FXML
     FontIcon closeIcon;
     @FXML
-    FontIcon minusIcon;
-    @FXML
     TextField inputPathText;
     @FXML
     FontIcon browseInputPathIcon;
@@ -60,8 +58,6 @@ public class GenerateCodeFrameController {
             closeIcon.getScene().getWindow().hide();
         });
 
-        minusIcon.setOnMousePressed(event -> ((Stage)(minusIcon.getScene().getWindow())).setIconified(true));
-
         browseInputPathIcon.setOnMousePressed(event -> {
             FileChooser.ExtensionFilter imageFilter
                     = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png", ".jpeg");
@@ -100,12 +96,12 @@ public class GenerateCodeFrameController {
                 error.setHeaderText("Select Your Language");
                 error.showAndWait();
             }else {
-                Main.loadFrame.showStage();
                 String flag;
                 if (imageProcessingCheckBox.isSelected())
                     flag = "-d";
                 else
                     flag = "-p";
+                System.out.println(this.inputPathText.getText());
                 new SubmitOperation("compile " + flag + " " + this.inputPathText.getText(),
                         getFileName(this.inputPathText.getText()),
                         this.outputPathText.getText(),

@@ -34,14 +34,6 @@
                   </HBox>
                         <HBox fx:id="hBox" alignment="CENTER" prefHeight="25.0" prefWidth="36.0">
                             <children>
-                                <FontIcon fx:id="minusIcon" iconColor="WHITE" iconLiteral="fa-minus" iconSize="18" wrappingWidth="20.0">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <HBox.margin>
-                              <Insets top="6.0" />
-                           </HBox.margin>
-                        </FontIcon>
                                 <FontIcon fx:id="closeIcon" iconColor="#cc0000" iconLiteral="fa-close" iconSize="22" text="" wrappingWidth="21.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />
