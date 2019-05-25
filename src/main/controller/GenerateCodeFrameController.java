@@ -8,6 +8,7 @@ import main.Operations.SubmitOperation;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class GenerateCodeFrameController {
     private final String HTML_LANGUAGE = "HTML";
     private final String ANDROID_LANGUAGE = "Android";
     private HashMap<String , String> languageMap;
-
+    private ArrayList<String> namesArray;
 
     public void initialize() {
 
@@ -101,9 +102,9 @@ public class GenerateCodeFrameController {
                     flag = "-d";
                 else
                     flag = "-p";
-                System.out.println(this.inputPathText.getText());
+
                 new SubmitOperation("compile " + flag + " " + this.inputPathText.getText(),
-                        getFileName(this.inputPathText.getText()),
+                        namesArray,
                         this.outputPathText.getText(),
                         this.languageMap.get(this.languageComboBox.getValue())).operate();
             }
@@ -121,6 +122,9 @@ public class GenerateCodeFrameController {
 
     public void setImagePath (File imageFile) {
         inputPathText.setText( imageFile.toString());
+        List<File> temp = new ArrayList<>();
+        temp.add(imageFile);
+        fillNamesList(temp);
     }
 
 
@@ -129,6 +133,13 @@ public class GenerateCodeFrameController {
         for (File file : imagesFiles){
             path += file.toString() + " ";
         }
+        fillNamesList(imagesFiles);
         inputPathText.setText(path);
+    }
+    private void fillNamesList(List<File> files){
+        namesArray = new ArrayList<>();
+        for(File file: files){
+            namesArray.add(getFileName(file.toString()));
+        }
     }
 }
