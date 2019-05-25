@@ -30,7 +30,7 @@ public class LoadFrame extends Stage {
 
     public void showStage () {
         if(!this.isShowing()){
-            this.showAndWait();
+            this.show();
             Main.openStage(this, 600, 308);
         }
 
