@@ -67,5 +67,15 @@ public class Main extends Application {
         }
     }
 
+    public static void openStage (Stage stage, double w, double h) {
+        Screen screen = Screen.getScreens().get(Screen.getScreens().size() -1);
+        Rectangle2D rect = screen.getVisualBounds();
+
+        stage.setWidth(w);
+        stage.setHeight(h);
+        stage.setX(rect.getWidth()/2 - stage.getWidth()/2);
+        stage.setY(rect.getHeight()/2  - stage.getHeight()/2);
+    }
+
 
 }

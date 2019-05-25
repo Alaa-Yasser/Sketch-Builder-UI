@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.*;
 import main.controller.GenerateCodeFrameController;
+import main.controller.Main;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,5 +47,6 @@ public class GenerateCodeFrame extends Stage {
         this.setScene(scene);
         this.setResizable(false);
         this.show();
+        Main.openStage(this, 600, 308);
     }
 }

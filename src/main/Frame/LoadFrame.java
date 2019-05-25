@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.*;
+import main.controller.Main;
 
 import java.io.IOException;
 
@@ -16,7 +17,7 @@ public class LoadFrame extends Stage {
 
         try {
             root = FXMLLoader.load(getClass().getResource("/resources/fxml/LoadFrame.fxml"));
-            scene = new Scene(root, 600, 330);
+            scene = new Scene(root);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -28,8 +29,11 @@ public class LoadFrame extends Stage {
     }
 
     public void showStage () {
-        if(!this.isShowing())
+        if(!this.isShowing()){
             this.showAndWait();
+            Main.openStage(this, 600, 308);
+        }
+
     }
 
     public void hideStage () {
