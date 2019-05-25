@@ -6,10 +6,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import javafx.stage.*;
-import main.Frame.GalleryImage;
-import main.Frame.GenerateCodeFrame;
-import main.Frame.OpenImageFrame;
-import main.Frame.PaintFrame;
+import main.Frame.*;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.*;
@@ -172,11 +169,15 @@ public class GalleryFrameController {
         });
 
         helpItem.setOnAction(event -> {
-
+            try {
+                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + "Help\\Help.pdf");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
         aboutItem.setOnAction(event -> {
-
+            new AboutFrame();
         });
 
 
