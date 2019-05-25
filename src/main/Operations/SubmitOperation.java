@@ -30,10 +30,9 @@ public class SubmitOperation extends Operation implements Client.ServerResponse 
 
         Thread x = new Thread(((Runnable)()->{
             Main.client.sendMessage(request);
-
         }));
         x.start();
-        
+        Main.loadFrame.showStage();
     }
 
     @Override
