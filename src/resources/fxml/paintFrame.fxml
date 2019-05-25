@@ -21,14 +21,14 @@
     <top>
         <VBox BorderPane.alignment="CENTER">
             <children>
-            <Pane fx:id="topBorder" prefHeight="5.0" style="-fx-background-color: #161a1d;"/>
+            <Pane fx:id="topBorder" prefHeight="5.0" style="-fx-background-color: #161a1d;" />
             <AnchorPane style="-fx-background-color: #161a1d;">
                <children>
                   <HBox fx:id="titleBar" layoutX="14.0" layoutY="14.0" prefHeight="24.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="70.0">
                      <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Paint Brush" wrappingWidth="109.13671875">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Paint Brush" wrappingWidth="123.13671875">
                                   <font>
-                                      <Font name="Serif Bold" size="20.0" />
+                                      <Font name="Serif Bold" size="22.0" />
                                   </font>
                               </Text>
                      </children>
@@ -113,12 +113,12 @@
         </StackPane>
     </center>
    <left>
-      <Pane fx:id="leftBorder" prefWidth="8.0" style="-fx-background-color: #161a1d;" BorderPane.alignment="CENTER"/>
+      <Pane fx:id="leftBorder" prefWidth="8.0" style="-fx-background-color: #161a1d;" BorderPane.alignment="CENTER" />
    </left>
    <right>
-      <Pane fx:id="rightBorder" prefWidth="8.0" style="-fx-background-color: #161a1d;" BorderPane.alignment="CENTER"/>
+      <Pane fx:id="rightBorder" prefWidth="8.0" style="-fx-background-color: #161a1d;" BorderPane.alignment="CENTER" />
    </right>
    <bottom>
-      <Pane fx:id="bottomBorder" prefHeight="8.0" style="-fx-background-color: #161a1d;" BorderPane.alignment="CENTER"/>
+      <Pane fx:id="bottomBorder" prefHeight="8.0" style="-fx-background-color: #161a1d;" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>
