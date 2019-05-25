@@ -1,5 +1,6 @@
 package main.Operations;
 
+import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import main.controller.Client;
 import main.controller.DrawCanvas;
@@ -28,9 +29,7 @@ public class SubmitOperation extends Operation implements Client.ServerResponse 
     @Override
     public void operate() {
 
-        Thread x = new Thread(((Runnable)()->{
-            Main.client.sendMessage(request);
-        }));
+        Thread x = new Thread(((Runnable)()-> Main.client.sendMessage(request)));
         x.start();
         Main.loadFrame.showStage();
     }
@@ -43,11 +42,15 @@ public class SubmitOperation extends Operation implements Client.ServerResponse 
             }else if(message.contains("equalize")){
                 this.request = "generate " + this.language + " json/"+ inputName +".json " + this.outputPath;
             }else if(message.contains("generate")){
-                System.out.println("Sketch converted to code");
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText("Sketch Convert to Code Successfully");
-                Main.loadFrame.hideStage();
-                alert.showAndWait();
+
+
+                Platform.runLater(()->{
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText("Sketch Convert to Code Successfully");
+                    System.out.println("Sketch converted to code");
+                    Main.loadFrame.hideStage();
+                    alert.showAndWait();
+                });
                 return;
             }else{
                 return;
