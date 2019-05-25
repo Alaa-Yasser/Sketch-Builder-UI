@@ -3,6 +3,7 @@ package main.Frame;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.stage.*;
+import main.controller.Main;
 import main.controller.OpenImageFrameController;
 
 import java.io.*;
@@ -13,8 +14,6 @@ public class OpenImageFrame extends Stage {
     private Parent root = null;
     private Scene scene;
     private File imageFile;
-    private double sceneWidth;
-    private double sceneHeight;
 
     public OpenImageFrame (File imageFile) {
 
@@ -29,16 +28,14 @@ public class OpenImageFrame extends Stage {
             e.printStackTrace();
         }
         ((OpenImageFrameController)loader.getController()).setImageFile(imageFile);
-        sceneWidth = ((OpenImageFrameController)loader.getController()).getImageWidth();
-        sceneHeight = ((OpenImageFrameController)loader.getController()).getImageHeight();
 
-        scene = new Scene(root, 700, 700);
+        scene = new Scene(root);
 
         this.initModality(Modality.APPLICATION_MODAL);
         this.initStyle(StageStyle.UNDECORATED);
         this.setScene(scene);
         this.show();
-
+        Main.openStage(this, 700, 700);
 
     }
 

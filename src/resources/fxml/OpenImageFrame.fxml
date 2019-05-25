@@ -39,14 +39,6 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </FontIcon>
-                        <FontIcon fx:id="maximizeIcon" iconColor="WHITE" iconLiteral="fa-window-maximize">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </FontIcon>
                         <FontIcon fx:id="closeIcon" iconColor="#cc0000" iconLiteral="fa-close" iconSize="22">
                            <cursor>
                               <Cursor fx:constant="HAND" />

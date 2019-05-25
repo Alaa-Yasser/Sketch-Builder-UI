@@ -31,8 +31,6 @@ public class OpenImageFrameController {
     @FXML
     FontIcon closeIcon;
     @FXML
-    FontIcon maximizeIcon;
-    @FXML
     FontIcon minusIcon;
     @FXML
     Text title;
@@ -47,42 +45,21 @@ public class OpenImageFrameController {
     private Image openedImage;
     private File imageFile;
 
-    private boolean isDragging = false;
-
     public void initialize() {
 
         titleBar.setOnMousePressed(event -> {
             xOffset = event.getSceneX();
             yOffset = event.getSceneY();
-            isDragging = true;
         });
 
         titleBar.setOnMouseDragged(event -> {
             Stage stage = ((Stage)titleBar.getScene().getWindow());
 
-            if(isDragging)
-                Main.maximizeWindow(stage);
-
             stage.setX(event.getScreenX() - xOffset);
             stage.setY(event.getScreenY() - yOffset);
-            isDragging = false;
         });
 
-        titleBar.setOnMouseClicked(event -> {
-            Stage stage = (Stage) titleBar.getScene().getWindow();
-            if (event.getButton().equals(MouseButton.PRIMARY)) {
-                if (event.getClickCount() == 2)
-                    Main.maximizeWindow(stage);
-            }
-        });
-
-        closeIcon.setOnMousePressed(event -> {
-            closeIcon.getScene().getWindow().hide();
-        });
-        maximizeIcon.setOnMousePressed(event -> {
-            Stage stage = (Stage) maximizeIcon.getScene().getWindow();
-            Main.maximizeWindow(stage);
-        });
+        closeIcon.setOnMousePressed(event -> closeIcon.getScene().getWindow().hide());
 
         minusIcon.setOnMousePressed(event -> ((Stage)(minusIcon.getScene().getWindow())).setIconified(true));
 
