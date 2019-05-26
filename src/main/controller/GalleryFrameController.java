@@ -1,5 +1,6 @@
 package main.controller;
 
+import javafx.application.HostServices;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -169,16 +170,14 @@ public class GalleryFrameController {
         });
 
         helpItem.setOnAction(event -> {
-            try {
-                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + "Help\\Help.pdf");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            String os = System.getProperty("os.name");
+            if(os.toLowerCase().contains("win"))
+                Main.services.showDocument("Help\\Help.pdf");
+            else
+                Main.services.showDocument("Help/Help.pdf");
         });
 
-        aboutItem.setOnAction(event -> {
-            new AboutFrame();
-        });
+        aboutItem.setOnAction(event -> new AboutFrame());
 
 
         addButton.setOnAction(event -> addImageFunc());

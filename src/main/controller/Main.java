@@ -1,6 +1,7 @@
 package main.controller;
 
 import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -14,11 +15,12 @@ import java.io.FileReader;
 public class Main extends Application {
     public static Client client;
     public static LoadFrame loadFrame;
-
+    public static  HostServices services;
     @Override
     public void start(Stage primaryStage) throws Exception {
         loadFrame = new LoadFrame();
         GalleryFrame galleryFrame = new GalleryFrame();
+        services = getHostServices();
 
     }
 
