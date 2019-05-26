@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="589.0" prefWidth="600.0" stylesheets="@../css/AboutFrameStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.AboutFrameController">
+<BorderPane stylesheets="@../css/AboutFrameStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.AboutFrameController">
     <top>
         <VBox BorderPane.alignment="CENTER">
             <children>
@@ -49,111 +49,113 @@
         <Pane fx:id="bottomBorder" prefHeight="8.0" prefWidth="600.0" style="-fx-background-color: #161a1d;" BorderPane.alignment="CENTER" />
     </bottom>
    <center>
-      <AnchorPane prefHeight="387.0" prefWidth="591.0" style="-fx-background-color: #333333;" BorderPane.alignment="CENTER">
+      <VBox style="-fx-background-color: #333333;" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="399.0" prefWidth="581.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-               <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sketch Builder 2019.1.0.0">
-                     <font>
-                        <Font name="Serif Bold" size="18.0" />
-                     </font>
-                  </Text>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Built on May 25, 2019">
-                     <font>
-                        <Font name="Serif Regular" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text fill="WHITE" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="It took us through the various phases of system development and gave us the real insight into the world of developing. In this system we focus on the fact that there are many developers in need of more time to think about the core of their projects than on designing the user interface. Thus, we created this desktop application to enable the developers to visualize their ideas fast by sketching it on paper or Paint Brush then the system will detect the objects of their designs and convert them to XML/HTML/C# code and sends them to their projects." wrappingWidth="581.0">
-                     <font>
-                        <Font name="Serif Regular" size="14.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </Text>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Development Team">
-                     <font>
-                        <Font name="Serif Bold" size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="5.0" top="20.0" />
-                     </VBox.margin>
-                  </Text>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Abdelaziz Gamal Mousa">
-                     <font>
-                        <Font name="Serif Regular" size="12.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="5.0" left="14.0" />
-                     </VBox.margin>
-                  </Text>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Amr Emad Zaki">
-                     <font>
-                        <Font name="Serif Regular" size="12.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="5.0" left="14.0" />
-                     </VBox.margin>
-                  </Text>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Hatem Atef Salah">
-                     <font>
-                        <Font name="Serif Regular" size="12.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="5.0" left="14.0" />
-                     </VBox.margin>
-                  </Text>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Menna Allah Waheed Abdelaziz">
-                     <font>
-                        <Font name="Serif Regular" size="12.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="5.0" left="14.0" />
-                     </VBox.margin>
-                  </Text>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sherouk Mohamed Sedky">
-                     <font>
-                        <Font name="Serif Regular" size="12.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="5.0" left="14.0" />
-                     </VBox.margin>
-                  </Text>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Alaa Yasser Kamel">
-                     <font>
-                        <Font name="Serif Regular" size="12.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="5.0" left="14.0" />
-                     </VBox.margin>
-                  </Text>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Supervisor">
-                     <font>
-                        <Font name="Serif Bold" size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="5.0" top="15.0" />
-                     </VBox.margin>
-                  </Text>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Ismail Amr Ismail">
-                     <font>
-                        <Font name="Serif Regular" size="12.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="5.0" left="14.0" />
-                     </VBox.margin>
-                  </Text>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Abdelaziz A. Abdelhamid">
-                     <font>
-                        <Font name="Serif Regular" size="12.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="14.0" />
-                     </VBox.margin>
-                  </Text>
-               </children>
-            </VBox>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sketch Builder 2019.1.0.0">
+               <font>
+                  <Font name="Serif Bold" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="5.0" top="5.0" />
+               </VBox.margin>
+            </Text>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Built on May 25, 2019">
+               <font>
+                  <Font name="Serif Regular" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="5.0" />
+               </VBox.margin>
+            </Text>
+            <Text fill="WHITE" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="It took us through the various phases of system development and gave us the real insight into the world of developing. In this system we focus on the fact that there are many developers in need of more time to think about the core of their projects than on designing the user interface. Thus, we created this desktop application to enable the developers to visualize their ideas fast by sketching it on paper or Paint Brush then the system will detect the objects of their designs and convert them to XML/HTML/C# code and sends them to their projects." wrappingWidth="581.0">
+               <font>
+                  <Font name="Serif Regular" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="5.0" top="20.0" />
+               </VBox.margin>
+            </Text>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Development Team">
+               <font>
+                  <Font name="Serif Bold" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="5.0" top="20.0" />
+               </VBox.margin>
+            </Text>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Abdelaziz Gamal Mousa">
+               <font>
+                  <Font name="Serif Regular" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="14.0" top="5.0" />
+               </VBox.margin>
+            </Text>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Amr Emad Zaki">
+               <font>
+                  <Font name="Serif Regular" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="14.0" top="5.0" />
+               </VBox.margin>
+            </Text>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Hatem Atef Salah">
+               <font>
+                  <Font name="Serif Regular" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="14.0" top="5.0" />
+               </VBox.margin>
+            </Text>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Menna Allah Waheed Abdelaziz">
+               <font>
+                  <Font name="Serif Regular" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="14.0" top="5.0" />
+               </VBox.margin>
+            </Text>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sherouk Mohamed Sedky">
+               <font>
+                  <Font name="Serif Regular" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="14.0" top="5.0" />
+               </VBox.margin>
+            </Text>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Alaa Yasser Kamel">
+               <font>
+                  <Font name="Serif Regular" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="14.0" top="5.0" />
+               </VBox.margin>
+            </Text>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Supervisor">
+               <font>
+                  <Font name="Serif Bold" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="5.0" top="20.0" />
+               </VBox.margin>
+            </Text>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Abdelaziz A. Abdelhamid">
+               <font>
+                  <Font name="Serif Regular" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="14.0" top="5.0" />
+               </VBox.margin>
+            </Text>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Ismail Amr Ismail">
+               <font>
+                  <Font name="Serif Regular" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="14.0" top="5.0" />
+               </VBox.margin>
+            </Text>
          </children>
-      </AnchorPane>
+      </VBox>
    </center>
 </BorderPane>
