@@ -35,7 +35,7 @@ public class AboutFrame extends Stage {
         this.initStyle(StageStyle.UNDECORATED);
         this.setScene(scene);
         this.show();
-        Main.openStage(this, 602, 585);
+        Main.openStage(this, 603, 504);
 
     }
 }
