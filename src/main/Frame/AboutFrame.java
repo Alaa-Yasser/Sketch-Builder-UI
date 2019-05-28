@@ -34,7 +34,6 @@ public class AboutFrame extends Stage {
         this.initModality(Modality.APPLICATION_MODAL);
         this.initStyle(StageStyle.UNDECORATED);
         this.setScene(scene);
-        this.show();
         Main.openStage(this, 603, 504);
 
     }

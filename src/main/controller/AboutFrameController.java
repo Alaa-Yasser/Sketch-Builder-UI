@@ -1,6 +1,7 @@
 package main.controller;
 
 import javafx.fxml.FXML;
+import javafx.stage.Stage;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 public class AboutFrameController {
@@ -10,7 +11,10 @@ public class AboutFrameController {
 
     public void initialize() {
 
-        closeIcon.setOnMousePressed(event -> closeIcon.getScene().getWindow().hide());
+        closeIcon.setOnMousePressed(event -> {
+            Stage stage = (Stage) closeIcon.getScene().getWindow();
+            stage.close();
+        });
 
     }
 

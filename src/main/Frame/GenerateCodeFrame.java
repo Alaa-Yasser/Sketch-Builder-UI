@@ -46,7 +46,7 @@ public class GenerateCodeFrame extends Stage {
         this.initStyle(StageStyle.UNDECORATED);
         this.setScene(scene);
         this.setResizable(false);
-        this.show();
+
         Main.openStage(this, 600, 308);
     }
 }

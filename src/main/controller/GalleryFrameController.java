@@ -123,7 +123,10 @@ public class GalleryFrameController {
         });
 
 
-        converterItem.setOnAction(event -> new GenerateCodeFrame());
+        converterItem.setOnAction(event -> {
+            GenerateCodeFrame converter = new GenerateCodeFrame();
+            converter.show();
+        });
 
         closeItem.setOnAction(event -> close());
 
@@ -179,7 +182,10 @@ public class GalleryFrameController {
                 Main.services.showDocument("Help/Help.pdf");
         });
 
-        aboutItem.setOnAction(event -> new AboutFrame());
+        aboutItem.setOnAction(event -> {
+            AboutFrame about = new AboutFrame();
+            about.show();
+        });
 
 
         addButton.setOnAction(event -> addImageFunc());
@@ -230,6 +236,7 @@ public class GalleryFrameController {
                 if (event.getButton().equals(MouseButton.PRIMARY)) {
                     if (event.getClickCount() == 2){
                         OpenImageFrame openImageFrame = new OpenImageFrame(IMAGE_FILE);
+                        openImageFrame.show();
                     }
                 }
             });
@@ -261,7 +268,8 @@ public class GalleryFrameController {
 
         item2.setOnAction(event -> {
             if (selectedItems.size() == 0) {
-                new PaintFrame(node.getImagefile());
+                PaintFrame paintFrame = new PaintFrame(node.getImagefile());
+                paintFrame.show();
             } else {
                 modifySelected();
             }
@@ -270,7 +278,8 @@ public class GalleryFrameController {
 
         item3.setOnAction(event -> {
             if (selectedItems.size() == 0) {
-                new GenerateCodeFrame(node.getImagefile());
+                GenerateCodeFrame converter = new GenerateCodeFrame(node.getImagefile());
+                converter.show();
             } else
                 convertSelected();
 
@@ -328,6 +337,7 @@ public class GalleryFrameController {
     private void modifySelected () {
         for (int i=0; i< selectedItems.size(); ++i ){
             PaintFrame paintFrame = new PaintFrame(selectedItems.get(i).getImagefile());
+            paintFrame.show();
         }
     }
 
@@ -336,7 +346,8 @@ public class GalleryFrameController {
         for (int i = 0; i < selectedItems.size(); ++i) {
             selectedFiles.add(selectedItems.get(i).getImagefile());
         }
-        new GenerateCodeFrame(selectedFiles);
+        GenerateCodeFrame converter = new GenerateCodeFrame(selectedFiles);
+        converter.show();
     }
 
     private void deleteSelected () {

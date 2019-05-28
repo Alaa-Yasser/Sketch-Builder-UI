@@ -76,7 +76,7 @@ public class SubmitOperation extends Operation implements Client.ServerResponse 
         Platform.runLater(()->{
             Alert alert = new Alert(type);
             alert.setHeaderText(message);
-            Main.loadFrame.hideStage();
+            Main.loadFrame.close();
             alert.showAndWait();
         });
     }

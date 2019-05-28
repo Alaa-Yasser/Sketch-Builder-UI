@@ -28,7 +28,6 @@ public class GalleryFrame extends Stage {
         Main.maximizeWindow(this);
         this.initStyle(StageStyle.UNDECORATED);
         this.setScene(scene);
-        this.show();
 
         this.setOnCloseRequest(event -> ((GalleryFrameController) loader.getController()).close());
 

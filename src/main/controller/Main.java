@@ -20,6 +20,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         loadFrame = new LoadFrame();
         GalleryFrame galleryFrame = new GalleryFrame();
+        galleryFrame.show();
         services = getHostServices();
 
     }

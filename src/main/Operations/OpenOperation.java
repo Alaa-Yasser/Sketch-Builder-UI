@@ -53,7 +53,7 @@ public class OpenOperation extends Operation {
                     open();
                 }
                 else if (result.get() == ButtonType.CANCEL){
-                    alert.hide();
+                    alert.close();
                 }
         }
     }

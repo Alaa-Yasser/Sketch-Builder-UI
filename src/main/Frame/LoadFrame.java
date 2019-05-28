@@ -35,8 +35,4 @@ public class LoadFrame extends Stage {
         }
 
     }
-
-    public void hideStage () {
-        this.hide();
-    }
 }

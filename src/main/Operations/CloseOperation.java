@@ -47,7 +47,7 @@ public class CloseOperation extends Operation {
                     closeStage();
                 }
                 else if (result.get() == ButtonType.CANCEL){
-                    alert.hide();
+                    alert.close();
                 }
         }
     }

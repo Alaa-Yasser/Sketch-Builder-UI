@@ -59,7 +59,10 @@ public class OpenImageFrameController {
             stage.setY(event.getScreenY() - yOffset);
         });
 
-        closeIcon.setOnMousePressed(event -> closeIcon.getScene().getWindow().hide());
+        closeIcon.setOnMousePressed(event -> {
+            Stage stage = (Stage) closeIcon.getScene().getWindow();
+            stage.close();
+        });
 
         minusIcon.setOnMousePressed(event -> ((Stage)(minusIcon.getScene().getWindow())).setIconified(true));
 

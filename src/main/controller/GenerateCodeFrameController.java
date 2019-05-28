@@ -56,7 +56,8 @@ public class GenerateCodeFrameController {
 
 
         closeIcon.setOnMousePressed(event -> {
-            closeIcon.getScene().getWindow().hide();
+            Stage stage = (Stage) closeIcon.getScene().getWindow();
+            stage.close();
         });
 
         browseInputPathIcon.setOnMousePressed(event -> {
