@@ -10,6 +10,7 @@ import java.util.Optional;
 public class CloseOperation extends Operation {
 
     private Stage stage;
+    private Stage openStage;
 
     public  void setStage (Stage stage){
             this.stage = stage;
@@ -23,7 +24,7 @@ public class CloseOperation extends Operation {
     @Override
     public void operate() {
         if (!canvas.getIsEdited()){
-            stage.hide();
+            closeStage();
         }
         else
         {
@@ -36,18 +37,29 @@ public class CloseOperation extends Operation {
                         SaveOperation save = new SaveOperation();
                         save.setStage(stage);
                         save.setCanvas(canvas);
-                        save.operate();
-                        stage.hide();
+                        save.saveAS();
+                        closeStage();
                     } catch (Exception e1) {
                         e1.printStackTrace();
                     }
                 }
                 else if (result.get() == ButtonType.NO){
-                    stage.hide();
+                    closeStage();
                 }
                 else if (result.get() == ButtonType.CANCEL){
                     alert.hide();
                 }
         }
+    }
+
+    public void setOpenStage (Stage openStage) {
+        this.openStage = openStage;
+    }
+
+    private void closeStage(){
+        System.out.println("closeStage");
+        if(this.openStage != null)
+            openStage.show();
+        stage.close();
     }
 }

@@ -1,6 +1,5 @@
 package main.controller;
 
-import javafx.application.HostServices;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -68,7 +67,8 @@ public class GalleryFrameController {
     private ArrayList<GalleryImage> selectedItems;
     private ArrayList<GalleryImage> galleryImages;
     private ArrayList<File> loadedFiles;
-    private boolean isDragging = false;
+//    private boolean isDragging = false;
+
     public void initialize() {
         selectedItems = new ArrayList<>();
         galleryImages = new ArrayList<>();
@@ -77,18 +77,18 @@ public class GalleryFrameController {
         titleBar.setOnMousePressed(event -> {
             xOffset = event.getSceneX();
             yOffset = event.getSceneY();
-            isDragging = true;
+//            isDragging = true;
         });
 
         titleBar.setOnMouseDragged(event -> {
             Stage stage = ((Stage)titleBar.getScene().getWindow());
 
-            if(isDragging)
-                Main.maximizeWindow(stage);
+//            if(isDragging)
+//                Main.maximizeWindow(stage);
 
             stage.setX(event.getScreenX() - xOffset);
             stage.setY(event.getScreenY() - yOffset);
-            isDragging = false;
+//            isDragging = false;
         });
 
         titleBar.setOnMouseClicked(event -> {
@@ -114,7 +114,9 @@ public class GalleryFrameController {
 
         paintItem.setOnAction(event -> {
             try {
-                new PaintFrame().setParentFrame((Stage)layout.getScene().getWindow());
+                PaintFrame paintFrame = new PaintFrame();
+                paintFrame.setParentFrame((Stage)layout.getScene().getWindow());
+                paintFrame.show();
                 (layout.getScene().getWindow()).hide();
 
             } catch (Exception e) { e.printStackTrace(); }

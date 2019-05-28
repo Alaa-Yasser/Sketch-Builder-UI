@@ -15,6 +15,7 @@ public class OpenOperation extends Operation {
     private GraphicsContext graphics;
     private Stage stage;
     private PaintFrameController paintController;
+    private File imageFile ;
 
     public  void setStage (Stage stage, PaintFrameController paintController){
         this.stage = stage;
@@ -42,7 +43,7 @@ public class OpenOperation extends Operation {
                         SaveOperation s = new SaveOperation();
                         s.setStage(stage);
                         s.setCanvas(canvas);
-                        s.operate();
+                        s.saveAS();
                         open();
                     } catch (Exception e1) {
                         e1.printStackTrace();
@@ -59,8 +60,9 @@ public class OpenOperation extends Operation {
 
     private void open (){
         final FileChooser FILE_CHOOSER = new FileChooser();
-        File file = FILE_CHOOSER.showOpenDialog(stage);
-        setImage(file);
+        imageFile = FILE_CHOOSER.showOpenDialog(stage);
+        canvas.setImageFile(imageFile);
+        setImage(imageFile);
     }
 
     public void setImage (File imageFile) {
@@ -70,6 +72,8 @@ public class OpenOperation extends Operation {
             paintController.setDrawCanvasSize(img.getWidth(), img.getHeight());
             graphics = this.canvas.getGraphicsContext2D();
             graphics.drawImage(img, 0, 0);
+            canvas.setIsOpened(true);
         }
     }
+
 }

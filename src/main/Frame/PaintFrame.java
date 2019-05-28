@@ -38,11 +38,13 @@ public class PaintFrame extends Stage {
         this.initStyle(StageStyle.UNDECORATED);
         this.setScene(scene);
         this.setOnCloseRequest(event -> ((PaintFrameController) loader.getController()).close());
-        this.show();
     }
 
     public void setParentFrame(Stage stage){
         ((PaintFrameController) loader.getController()).setGalleryFrame(stage);
     }
 
+    public PaintFrameController getController () {
+        return (PaintFrameController) loader.getController();
+    }
 }

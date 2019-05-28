@@ -26,7 +26,7 @@
                <children>
                   <HBox fx:id="titleBar" layoutX="14.0" layoutY="14.0" prefHeight="24.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="70.0">
                      <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Paint Brush" wrappingWidth="123.13671875">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Paint Brush" wrappingWidth="203.13671875">
                                   <font>
                                       <Font name="Serif Bold" size="22.0" />
                                   </font>
@@ -66,10 +66,12 @@
                 <Pane prefHeight="3.0" style="-fx-background-color: #cc0000;" />
                 <MenuBar style="-fx-background-color: #161a1d;">
                     <menus>
-                        <Menu mnemonicParsing="false" text="File">
+                        <Menu fx:id="fileMenu" mnemonicParsing="false" text="File">
                             <items>
+                                <MenuItem fx:id="newItem" mnemonicParsing="false" text="New" />
                                 <MenuItem fx:id="openItem" mnemonicParsing="false" text="Open" />
                                 <MenuItem fx:id="saveItem" mnemonicParsing="false" text="Save" />
+                                <MenuItem fx:id="saveAsItem" mnemonicParsing="false" text="Save as" />
                                 <MenuItem fx:id="clearItem" mnemonicParsing="false" text="Clear" />
                                 <MenuItem fx:id="closeItem" mnemonicParsing="false" text="Close" />
                             </items>

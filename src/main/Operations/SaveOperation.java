@@ -28,6 +28,17 @@ public class SaveOperation extends Operation {
         WritableImage image = new WritableImage((int)canvas.getWidth(), (int)canvas.getHeight());
         canvas.snapshot(null, image);
 
+        save(image, canvas.getImageFile());
+
+        canvas.setIsEdited(false);
+
+    }
+
+    public void saveAS () {
+
+        WritableImage image = new WritableImage((int)canvas.getWidth(), (int)canvas.getHeight());
+        canvas.snapshot(null, image);
+
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save Image");
 
@@ -37,15 +48,18 @@ public class SaveOperation extends Operation {
         File imageFile = fileChooser.showSaveDialog(stage);
 
         if (imageFile != null) {
-            try {
-                ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", imageFile);
-            } catch (IOException s) {
-                System.err.println("Couldn't save the file!");
-            }
+            save(image, imageFile);
         }
 
-            canvas.setIsEdited(false);
+        canvas.setIsEdited(false);
     }
 
+    private void save (WritableImage image, File imageFile) {
+        try {
+            ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", imageFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

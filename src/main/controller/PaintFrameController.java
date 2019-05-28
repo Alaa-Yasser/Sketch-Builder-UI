@@ -1,11 +1,12 @@
 package main.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.Cursor;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import main.Frame.PaintFrame;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import main.Operations.ClearOperation;
@@ -39,9 +40,15 @@ public class PaintFrameController {
     @FXML
     FontIcon minusIcon;
     @FXML
+    Menu fileMenu;
+    @FXML
+    MenuItem newItem;
+    @FXML
     MenuItem openItem;
     @FXML
     MenuItem saveItem;
+    @FXML
+    MenuItem saveAsItem;
     @FXML
     MenuItem clearItem;
     @FXML
@@ -75,18 +82,18 @@ public class PaintFrameController {
         titleBar.setOnMousePressed(event -> {
             xOffset = event.getSceneX();
             yOffset = event.getSceneY();
-            isDraging = true;
+//            isDraging = true;
         });
 
         titleBar.setOnMouseDragged(event -> {
             Stage stage = ((Stage)titleBar.getScene().getWindow());
 
-            if(isDraging)
-                Main.maximizeWindow(stage);
+//            if(isDraging)
+//                Main.maximizeWindow(stage);
 
             stage.setX(event.getScreenX() - xOffset);
             stage.setY(event.getScreenY() - yOffset);
-            isDraging = false;
+//            isDraging = false;
         });
 
         titleBar.setOnMouseClicked(event -> {
@@ -98,7 +105,7 @@ public class PaintFrameController {
         });
 
 
-        closeIcon.setOnMousePressed(event -> close() );
+        closeIcon.setOnMousePressed(event -> close(stage) );
 
         maximizeIcon.setOnMousePressed(event -> {
             Stage stage = (Stage) maximizeIcon.getScene().getWindow();
@@ -108,13 +115,39 @@ public class PaintFrameController {
         minusIcon.setOnMousePressed(event -> ((Stage) (minusIcon.getScene().getWindow())).setIconified(true));
 
 
-        openItem.setOnAction(event -> openImage());
+        fileMenu.setOnShown(event -> {
+            if (!drawCanvas.getIsOpened())
+                saveItem.setDisable(true);
+            else
+                saveItem.setDisable(false);
+        });
+
+        newItem.setOnAction(event -> {
+            PaintFrame paintFrame = new PaintFrame();
+            paintFrame.getController().setGalleryFrame(stage);
+            close(paintFrame);
+
+        });
+
+        openItem.setOnAction(event -> {
+            OpenOperation open = new OpenOperation();
+            open.setStage((Stage) (mainLayout.getScene().getWindow()), this);
+            open.setCanvas(drawCanvas);
+            open.operate();
+        });
 
         saveItem.setOnAction(event -> {
             SaveOperation save = new SaveOperation();
             save.setStage((Stage) (mainLayout.getScene().getWindow()));
             save.setCanvas(drawCanvas);
             save.operate();
+        });
+
+        saveAsItem.setOnAction(event -> {
+            SaveOperation save = new SaveOperation();
+            save.setStage((Stage) (mainLayout.getScene().getWindow()));
+            save.setCanvas(drawCanvas);
+            save.saveAS();
         });
 
         clearItem.setOnAction(event -> {
@@ -124,9 +157,7 @@ public class PaintFrameController {
             clear.operate();
         });
 
-        closeItem.setOnAction(event -> {
-            close();
-        });
+        closeItem.setOnAction(event -> close(stage));
 
         brushItem.setOnAction(event -> setBrushItem() );
 
@@ -169,20 +200,22 @@ public class PaintFrameController {
         brush.draw();
     }
 
+    public void close (Stage stage) {
+        CloseOperation close = new CloseOperation();
+        close.setStage((Stage) (mainLayout.getScene().getWindow()));
+        close.setCanvas(drawCanvas);
+        close.setOpenStage(stage);
+        close.operate();
+    }
+
     public void close () {
         CloseOperation close = new CloseOperation();
         close.setStage((Stage) (mainLayout.getScene().getWindow()));
         close.setCanvas(drawCanvas);
+        close.setOpenStage(stage);
         close.operate();
-        stage.show();
     }
 
-    public void openImage () {
-        OpenOperation open = new OpenOperation();
-        open.setStage((Stage) (mainLayout.getScene().getWindow()), this);
-        open.setCanvas(drawCanvas);
-        open.operate();
-    }
 
     public void setImage (File imageFile) {
         OpenOperation open = new OpenOperation();
