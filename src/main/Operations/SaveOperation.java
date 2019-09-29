@@ -52,6 +52,7 @@ public class SaveOperation extends Operation {
         }
 
         canvas.setIsEdited(false);
+        canvas.setIsOpened(true);
     }
 
     private void save (WritableImage image, File imageFile) {

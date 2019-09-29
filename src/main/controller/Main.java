@@ -11,6 +11,7 @@ import main.Frame.LoadFrame;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.List;
 
 public class Main extends Application {
     public static Client client;
@@ -43,8 +44,24 @@ public class Main extends Application {
     }
 
     public static void maximizeWindow (Stage stage) {
-        Screen screen = Screen.getScreens().get(Screen.getScreens().size() -1);
+        final Screen primaryScreen = Screen.getPrimary();
+        final List<Screen> allScreens = Screen.getScreens();
+        Screen secondaryScreen;
+        if (allScreens.size() <= 1) {
+            System.out.println("Only one screen");
+            secondaryScreen = primaryScreen;
+        } else {
+            // UPDATED:
+            if (allScreens.get(0) == (primaryScreen)) {
+                secondaryScreen = allScreens.get(1);
+            } else {
+                secondaryScreen = allScreens.get(0);
+            }
+        }
+        Screen screen = secondaryScreen;
+
         Rectangle2D rect = screen.getVisualBounds();
+
         if (stage.getWidth() == rect.getWidth()){
             stage.setWidth(500);
             stage.setHeight(500);

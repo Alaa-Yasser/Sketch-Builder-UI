@@ -136,6 +136,7 @@ public class GalleryFrameController {
                 modifySelectedItem.setDisable(true);
                 convertSelectedItem.setDisable(true);
                 deleteSelectedItem.setDisable(true);
+                selectAllItem.setText("SelectAll");
             }
             else {
                 modifySelectedItem.setDisable(false);
