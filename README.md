@@ -37,10 +37,9 @@ $ java -jar generator.jar
 
 ## Application main Frames
 
-- [First Shot](shots/sh1.jpeg)
-- [Second Shot](shots/sh2.jpeg)
-- [Third Shot](shots/sh3.jpeg)
-
+<p align="center"><img src="shots/shot1.jpeg" width="500"\></p>
+<p align="center"><img src="shots/shot2.jpeg" width="500"\></p>
+<p align="center"><img src="shots/shot3.jpeg" width="500"\></p>
 
 ### Note
 - this application is just the ui of sketch builder project and will not do any operation without other parts
