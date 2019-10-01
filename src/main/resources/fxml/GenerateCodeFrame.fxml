@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane fx:id="rootBorder" stylesheets="@../css/GenerateCodeFrameStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sketch.builder.ui.controller.GenerateCodeFrameController">
+    <top>
+        <VBox style="-fx-background-color: #161a1d;" BorderPane.alignment="CENTER">
+            <children>
+            <HBox prefHeight="25.0" prefWidth="200.0">
+               <children>
+                  <HBox fx:id="titleBar" prefHeight="25.0" prefWidth="545.0">
+                     <children>
+                              <Text fx:id="title" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Converter" wrappingWidth="152.0205078125">
+                                  <font>
+                                      <Font name="Serif Bold" size="20.0" />
+                                  </font>
+                              </Text>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+                        <HBox fx:id="hBox" alignment="CENTER" prefHeight="25.0" prefWidth="36.0">
+                            <children>
+                                <FontIcon fx:id="closeIcon" iconColor="#cc0000" iconLiteral="fa-close" iconSize="22" text="" wrappingWidth="1.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </FontIcon>
+                            </children>
+                        </HBox>
+               </children>
+            </HBox>
+                <Pane prefHeight="3.0" prefWidth="588.0" style="-fx-background-color: #cc0000;" />
+                  <BorderPane prefHeight="102.0" prefWidth="588.0">
+               <top>
+                  <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                                <VBox prefHeight="108.0" prefWidth="536.0" spacing="25.0">
+                           <children>
+                              <TextField fx:id="inputPathText" editable="false" prefHeight="26.0" prefWidth="521.0" style="-fx-text-fill: white; -fx-background-color: #161a1d;" text="Image Path">
+                                 <font>
+                                    <Font name="Serif Regular" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                              </TextField>
+                              <TextField fx:id="outputPathText" editable="false" style="-fx-text-fill: white; -fx-background-color: #161a1d;" text="Project Path">
+                                 <font>
+                                    <Font name="Serif Regular" size="12.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                              </TextField>
+                           </children>
+                           <padding>
+                              <Insets left="10.0" right="5.0" top="10.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                                </VBox>
+                                <VBox prefHeight="95.0" prefWidth="46.0" spacing="20.0">
+                                    <children>
+                              <FontIcon fx:id="browseInputPathIcon" iconColor="#cc0000" iconLiteral="fa-ellipsis-h" iconSize="30" wrappingWidth="23.0">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></FontIcon>
+                              <FontIcon fx:id="browseOutputPathIcon" iconColor="#cc0000" iconLiteral="fa-ellipsis-h" iconSize="30" wrappingWidth="26.0">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></FontIcon>
+                                    </children>
+                                    <padding>
+                                        <Insets left="10.0" right="10.0" top="20.0" />
+                                    </padding>
+                                </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                  </HBox>
+               </top>
+                  </BorderPane>
+            <BorderPane prefHeight="162.0" prefWidth="588.0">
+               <bottom>
+                        <Button fx:id="submitButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="188.0" style="-fx-font-family: Berlin Sans FB Demi;" text="Submit" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets bottom="5.0" right="5.0" />
+                     </BorderPane.margin>
+                     <font>
+                        <Font name="Serif Bold" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </bottom>
+               <left>
+                  <ComboBox fx:id="languageComboBox" prefHeight="28.0" prefWidth="221.0" promptText="Language" style="-fx-background-color: #161a1d; -fx-border-color: #cc0000; -fx-border-radius: 30px;" BorderPane.alignment="TOP_LEFT">
+                     <BorderPane.margin>
+                        <Insets left="7.0" />
+                     </BorderPane.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ComboBox>
+               </left>
+               <right>
+                        <CheckBox fx:id="imageProcessingCheckBox" mnemonicParsing="false" prefHeight="26.0" prefWidth="248.0" text="Use Image Processing" textFill="WHITE" BorderPane.alignment="TOP_RIGHT">
+                            <font>
+                                <Font name="Serif Regular" size="20.0" />
+                            </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                        </CheckBox>
+               </right>
+            </BorderPane>
+            </children>
+        </VBox>
+    </top>
+</BorderPane>
