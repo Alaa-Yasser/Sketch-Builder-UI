@@ -45,5 +45,8 @@ $ java -jar generator.jar
 - this application is just the ui of sketch builder project and will not do any operation without other parts
 
 
+## Main Project:
+- [Sketch builder] (https://github.com/zezomousa101/Sketch-Builder)
+
 
 
